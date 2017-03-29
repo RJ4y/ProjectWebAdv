@@ -41,7 +41,7 @@ class PDOEventRepository implements EventRepository
         }
     }
 
-    public function get($id)
+    public function findEventById($id)
     {
         $connection = ConnectionDb::getConnection();
         $statementString = "SELECT *
@@ -50,17 +50,21 @@ class PDOEventRepository implements EventRepository
         $statement = $connection->query($statementString);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         $row = $statement->fetch();
-        $event = new \Evenement();
-        $event->setAdministrator($row[0]);
-        $event->setTitel($row[1]);
-        $event->setDatumIngave($row[2]);
-        $event->setKlant($row[3]);
-        $event->setOmschrijvingEvenement($row[4]);
-        $event->setVerwachteAanwezigheid($row[5]);
-        $event->setType($row[6]);
-        $event->setMateriaal($row[7]);
-        $event->setToegewezenPersoneel($row[8]);
+        if(count($row)==1) {
+            $event = new \Evenement();
+            $event->setAdministrator($row[0]);
+            $event->setTitel($row[1]);
+            $event->setDatumIngave($row[2]);
+            $event->setKlant($row[3]);
+            $event->setOmschrijvingEvenement($row[4]);
+            $event->setVerwachteAanwezigheid($row[5]);
+            $event->setType($row[6]);
+            $event->setMateriaal($row[7]);
+            $event->setToegewezenPersoneel($row[8]);
 
-        return event;
+            return event;
+        }else{
+            return null;
+        }
     }
 }
