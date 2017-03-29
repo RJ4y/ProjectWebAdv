@@ -19,3 +19,6 @@ evenementen
 voor info over tabel: describe 'tabelnaam'
 alle records: select * from 'tabelnaam'
 
+Extra commands:
+tabel uitbreiden met nieuw veld: ALTER TABLE 'tabelnaam' ADD 'veldnaam' 'datatype';
+toegevoegd veld aanpassen op bestaand record: UPDATE 'tabelnaam' SET 'veldnaam' = 'value1', 'veldnaam' = 'value2', ... WHERE 'condition';
