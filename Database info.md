@@ -1,9 +1,8 @@
-#**Inloggen:**
+**Inloggen:**
 
 username: user
 
 password: user
-
 
 voor in mysql tegraken: mysql -u root -p
 
@@ -11,7 +10,7 @@ password voor mysql: user
 
 voor in de database te komen: use monkeybussines
 
-#**uitloggen:** 
+**uitloggen:** 
 exit
 
 username: user
@@ -21,22 +20,15 @@ voor in mysql tegraken: mysql -u root -p
 password voor mysql: user
 voor in de database te komen: use monkeybussines
 
-#**uitloggen:** exit
+**uitloggen:** exit
 
 
-#**Tabellen:**
+**Tabellen:**
 
-####adressen
-####klanten
-####personeel
-####evenementen
-
-voor info over tabel: *describe 'tabelnaam'*
-
-##adressen
-##klanten
-##personeel
-##evenementen
+adressen
+klanten
+prsoneel
+evenementen
 
 voor info over tabel: *describe 'tabelnaam'*
 
