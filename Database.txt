@@ -1,0 +1,146 @@
+-- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
+--
+-- Host: localhost    Database: monkeybussines
+-- ------------------------------------------------------
+-- Server version       5.7.17-0ubuntu0.16.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `adressen`
+--
+
+DROP TABLE IF EXISTS `adressen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `adressen` (
+  `adres_id` int(11) NOT NULL,
+  `straat` varchar(40) DEFAULT NULL,
+  `postcode` int(11) DEFAULT NULL,
+  `land` varchar(40) DEFAULT NULL,
+  `huisnummer` int(11) DEFAULT NULL,
+  `bus` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`adres_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `adressen`
+--
+
+LOCK TABLES `adressen` WRITE;
+/*!40000 ALTER TABLE `adressen` DISABLE KEYS */;
+INSERT INTO `adressen` VALUES (1,'lommenstraat',3000,'Belgie',15,NULL),(2,'anilaan',2520,'Belgie',31,'A'),(3,'elfdeliniestraat',3050,'Belgie',75,'XBDAR'),(4,'krommestraat',1000,'Belgie',1,NULL),(5,'kronenlaan',1000,'Nederland',195,'AC');
+/*!40000 ALTER TABLE `adressen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `evenementen`
+--
+
+DROP TABLE IF EXISTS `evenementen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `evenementen` (
+  `evenement_id` int(11) DEFAULT NULL,
+  `naam` varchar(20) DEFAULT NULL,
+  `klant_id` int(11) DEFAULT NULL,
+  `adres_id` int(11) DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  `planning_datum` date DEFAULT NULL,
+  `omschrijving` varchar(100) DEFAULT NULL,
+  `personeel_id` int(11) DEFAULT NULL,
+  `start_datum` date DEFAULT NULL,
+  `eind_datum` date DEFAULT NULL,
+  `verwacht_gasten_aantal` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `evenementen`
+--
+
+LOCK TABLES `evenementen` WRITE;
+/*!40000 ALTER TABLE `evenementen` DISABLE KEYS */;
+INSERT INTO `evenementen` VALUES (1,'HuwelijkS5',1,2,'Vliegende pastoors','2017-06-06','Huwelijk boven water',1,'2017-07-08','2017-07-10',100),(2,'Afterparty',4,4,'ASS hostesses','2017-10-11','After party',2,'2017-10-12','2017-10-15',275);
+/*!40000 ALTER TABLE `evenementen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `klanten`
+--
+
+DROP TABLE IF EXISTS `klanten`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `klanten` (
+  `klant_id` int(11) NOT NULL,
+  `naam` varchar(40) DEFAULT NULL,
+  `voornaam` varchar(40) DEFAULT NULL,
+  `adres_id` int(11) DEFAULT NULL,
+  `aantal_evenementen` int(11) DEFAULT NULL,
+  `openstaande_rekening` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`klant_id`),
+  KEY `adres_id_fk` (`adres_id`),
+  CONSTRAINT `adres_id_fk` FOREIGN KEY (`adres_id`) REFERENCES `adressen` (`adres_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `klanten`
+--
+
+LOCK TABLES `klanten` WRITE;
+/*!40000 ALTER TABLE `klanten` DISABLE KEYS */;
+INSERT INTO `klanten` VALUES (1,'Diggle','John',2,1,0),(2,'Queen','Oliver',1,3,0),(3,'Janssen','Jan',5,1,0),(4,'Demeule','Ilse',4,16,1),(5,'Barton','kree',3,2,0);
+/*!40000 ALTER TABLE `klanten` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `personeel`
+--
+
+DROP TABLE IF EXISTS `personeel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `personeel` (
+  `personeel_id` int(11) NOT NULL,
+  `naam` varchar(20) DEFAULT NULL,
+  `voornaam` varchar(20) DEFAULT NULL,
+  `skills` varchar(20) DEFAULT NULL,
+  `adres_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`personeel_id`),
+  KEY `personeel_adres_id_fk` (`adres_id`),
+  CONSTRAINT `personeel_adres_id_fk` FOREIGN KEY (`adres_id`) REFERENCES `adressen` (`adres_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `personeel`
+--
+
+LOCK TABLES `personeel` WRITE;
+/*!40000 ALTER TABLE `personeel` DISABLE KEYS */;
+INSERT INTO `personeel` VALUES (1,'Dycksyta','Tim','Onthaal',1),(2,'Depp','Johnny','Optreden',5);
+/*!40000 ALTER TABLE `personeel` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-03-29 11:28:22
