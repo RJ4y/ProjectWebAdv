@@ -5,14 +5,14 @@ class Personeel extends Persoon
 {
     private $personeelId;
     private $kwaliteiten;
-    private $rechten;
+    //private $rechten;
 
     public function __construct($naam, $adres, $gsmNummer, $telefoonNummer, $personeelId, $kwaliteiten)
     {
         parent::__construct($naam, $adres, $gsmNummer, $telefoonNummer);
-        $this->administratorId = $personeelId;
+        $this->$personeelId = $personeelId;
         $this->$kwaliteiten = $kwaliteiten;
-        $this->rechten = EnumRechten::Personeel;
+        //$this->rechten = EnumRechten::Personeel;
     }
 
     public function getPersoneel($index)
@@ -23,6 +23,6 @@ class Personeel extends Persoon
 
     function __toString()
     {
-        return parent::__toString() . " " . "Personeel: " . $this->personeelId . " " . $this->kwaliteiten . " " . $this->rechten;
+        return parent::__toString() . " " . "Personeel: " . $this->personeelId . " " . $this->kwaliteiten; //. " " . $this->rechten;
     }
 }
