@@ -12,7 +12,7 @@ namespace repo;
 interface EventRepository
 {
     public function findEvents();
-    public function get($id);
+    public function findEventById($id);
     /*
     public function findPersons();
     public function add(Person $person);
