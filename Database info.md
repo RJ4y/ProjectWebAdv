@@ -31,3 +31,17 @@ tabel uitbreiden met nieuw veld: *ALTER TABLE 'tabelnaam' ADD 'veldnaam' 'dataty
 toegevoegd veld aanpassen op bestaand record: *UPDATE 'tabelnaam' SET 'veldnaam' = 'value1', 'veldnaam' = 'value2', ... WHERE 'condition';*
 
 toegevoegd veld aanpassen op bestaand record: *UPDATE 'tabelnaam' SET 'veldnaam' = 'value1', 'veldnaam' = 'value2', ... WHERE 'condition';*
+
+
+**Database inmporten:**
+Maak in linux een nieuwe file aan (.sql), kopieer hier de file "database" in. save de file.
+mysql -u root -p lbry < dump-lbry.sql
+~ mysql -u root -p
+mysql> create database monkeybussines
+mysql> exit
+~ mysql -u root -p monkeybussines < database.sql(dit is de file die je net hebt aangemaakt)
+  password: user
+~ mysql -u root -p
+mysql> use monkeybussines
+mysql> select * from klanten  
+
