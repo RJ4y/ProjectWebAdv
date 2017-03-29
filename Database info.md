@@ -32,7 +32,7 @@ toegevoegd veld aanpassen op bestaand record: *UPDATE 'tabelnaam' SET 'veldnaam'
 
 toegevoegd veld aanpassen op bestaand record: *UPDATE 'tabelnaam' SET 'veldnaam' = 'value1', 'veldnaam' = 'value2', ... WHERE 'condition';*
 
-Database inmporten: 
+Database inmporten: (password is altijd 'user')!
 Maak in linux een nieuwe file aan (.sql), kopieer hier de file "database" in. save de file.
 
 mysql -u root -p lbry < dump-lbry.sql
@@ -45,7 +45,7 @@ mysql> exit
 
 ~ mysql -u root -p monkeybussines < database.sql(dit is de file die je net hebt aangemaakt)
 
-password: user
+
 
 ~ mysql -u root -p
 
