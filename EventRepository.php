@@ -1,0 +1,20 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: 11500046
+ * Date: 29/03/2017
+ * Time: 9:16
+ */
+
+namespace repo;
+
+
+interface EventRepository
+{
+    public function findEvents();
+    /*
+    public function findPersons();
+    public function add(Person $person);
+    public function remove($id);
+    */
+}
