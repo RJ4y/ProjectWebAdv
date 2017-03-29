@@ -11,17 +11,8 @@ password voor mysql: user
 voor in de database te komen: use monkeybussines
 
 **uitloggen:** 
+
 exit
-
-username: user
-password: user
-
-voor in mysql tegraken: mysql -u root -p
-password voor mysql: user
-voor in de database te komen: use monkeybussines
-
-**uitloggen:** exit
-
 
 **Tabellen:**
 
