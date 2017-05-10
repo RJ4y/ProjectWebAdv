@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+        div {
+            width: 45px;
+            height: 40px;
+            margin: auto;
+            border: 1px solid #aaaaaa;
+        }
+        h4{
+            margin-top: 1px;
+            margin-bottom: 1px;
+        }
+        img{
+            margin: auto;
+            width: 32px;
+            height:32px;
+        }
+        table{
+            margin: 20px;
+        }
+        thead tr{
+            align-content: center;
+        }
+        td{
+            width: 150px;
+            text-align: center;
+            border: solid 1px black;
+        }
+        .tdResult{
+            border:none;
+        }
+
+    </style>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+
+        function checkAnswers() {
+            var divs = document.getElementsByTagName("div");
+            var result = "";
+            for(var i = 0; i < divs.length; i++){
+                result = "";
+                var div = divs[i];
+                if(div.getElementsByTagName("img").length!=0){
+                    var img = divs[i].getElementsByTagName("img")[0];
+                    if(div.className == img.className){
+                        result = "Goed";
+                    }else{
+                        result = "Fout";
+                    }
+                    document.getElementsByClassName("row")[i].getElementsByClassName("result")[0].innerHTML = result;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+<h1>Drag the right flag into the right box</h1>
+<table>
+    <thead>
+    <tr>
+        <td>Land</td>
+        <td>Flag</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="row">
+        <td>
+            <h4>Frankrijk</h4>
+            <div id="dfr" class="fr" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </td>
+        <td>
+            <img id="fbe" class="be" src="flag-be.png" draggable="true" ondragstart="drag(event)">
+        </td>
+        <td class="tdResult">
+            <h2 class="result"></h2>
+        </td>
+    </tr>
+    <tr class="row">
+        <td>
+            <h4>Italie</h4>
+            <div id="dit" class="it" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </td>
+        <td>
+            <img id="fpt" class="pt" src="flag-pt.png" draggable="true" ondragstart="drag(event)">
+        </td>
+        <td class="tdResult">
+            <h2 class="result"></h2>
+        </td>
+    </tr>
+    <tr class="row">
+        <td>
+            <h4>Spanie</h4>
+            <div id="des" class="es" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </td>
+        <td>
+            <img id="fit" class="it" src="flag-it.png" draggable="true" ondragstart="drag(event)">
+        </td>
+        <td class="tdResult">
+            <h2 class="result"></h2>
+        </td>
+    </tr>
+    <tr class="row">
+        <td>
+            <h4>Belgie</h4>
+            <div id="dbe" class="be" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </td>
+        <td>
+            <img id="ffr" class="fr" src="flag-fr.png" draggable="true" ondragstart="drag(event)">
+        </td>
+        <td class="tdResult">
+            <h2 class="result"></h2>
+        </td>
+    </tr>
+    <tr class="row">
+        <td>
+            <h4>Portugal</h4>
+            <div id="dpt" class="pt" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </td>
+        <td>
+            <img id="fes" class="es" src="flag-es.png" draggable="true" ondragstart="drag(event)">
+        </td>
+        <td class="tdResult">
+            <h2 class="result"></h2>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<button id="btnCheck" onclick="checkAnswers()">Check answers</button>
+</body>
+</html>
