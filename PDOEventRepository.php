@@ -9,7 +9,8 @@
 
 namespace repo;
 
-use Event;
+use ConnectionDb;
+use Evenement;
 
 include("Evenement.php");
 include("EventRepository.php");
@@ -19,33 +20,56 @@ class PDOEventRepository implements EventRepository
 {
     private $connection = null;
 
-    public function __construct(\PDO $connection)
+    public function __construct(\mysqli $connection)
     {
         $this->connection = $connection;
+    }
+
+
+
+    public function findPerson($id)
+    {
+        try {
+            $statement = $this->connection->prepare("SELECT * FROM evenementen WHERE klant_id = $id");
+            $statement->execute();
+            $sql = "SELECT * FROM evenementen WHERE klant_id = $id";
+            $results = $this->connection->query($sql);
+            //$results = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            if (count($results) > 0) {
+                return new Event($results[0]['event_id'], $results[0]['event_name'], $results[0]['start_date'], $results[0]['end_date'], $results[0]['person_id']);
+            } else {
+                return null;
+            }
+
+        } catch (\Exception $exception) {
+            return $exception;
+        }
     }
 
     public function findEvents()
     {
         try {
-            $statement = $this->connection->prepare("SELECT * FROM events");
+            $statement = $this->connection->prepare("SELECT * FROM evenementen");
             $statement->execute();
-            $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
-
+           // $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            $sql = "SELECT * FROM evenementen";
+            $results = $this->connection->query($sql);
             if (count($results) > 0) {
                 return new Event($results[0]['event_id'], $results[0]['event_name'], $results[0]['start_date'], $results[0]['end_date'], $results[0]['person_id']);
             } else {
                 return null;
             }
         } catch (\Exception $exception) {
-            return null;
+            return $exception;
         }
     }
 
     public function findEventById($id)
     {
+        try{
         $connection = ConnectionDb::getConnection();
         $statementString = "SELECT *
-                            FROM events
+                            FROM evenementen
                             WHERE eventid =$id";
         $statement = $connection->query($statementString);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -62,9 +86,25 @@ class PDOEventRepository implements EventRepository
             $event->setMateriaal($row[7]);
             $event->setToegewezenPersoneel($row[8]);
 
-            return event;
+            return $event;
         }else{
             return null;
         }
+        }catch (\Exception $exception){
+            return $exception;
+        }
     }
-}
+
+    public function CreateEvent($naam , $klant_id ,$adres_id, $type ,$planning_datum , $omschrijving, $personeel_id ,$start_datum , $eind_datum , $aantalGasten ){
+        try {
+
+            $statement = $this->connection->prepare("INSERT INTO evenementen VALUES ($naam , $klant_id ,$adres_id, $type ,$planning_datum , $omschrijving, $personeel_id ,$start_datum , $eind_datum , $aantalGasten ) ");
+            $statement->execute();
+            $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        } catch (\Exception $exception) {
+            return $exception;
+        }
+    }
+
+    }

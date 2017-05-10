@@ -36,7 +36,7 @@ Database inmporten: (password is altijd 'user')!
 
 Maak in linux een nieuwe file aan (.sql), kopieer hier de file "database" in. save de file.
 
-mysql -u root -p lbry < dump-lbry.sql
+des
 
 ~ mysql -u root -p
 
