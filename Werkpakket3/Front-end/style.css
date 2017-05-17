@@ -1,0 +1,122 @@
+body {
+    background: lightblue;
+}
+h1{
+    display: inline-block;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+}
+@media screen and (max-width: 750px){
+
+
+
+    #form {
+        display: block;
+        text-align: center;
+        height: 100vh;
+        overflow: visible;
+    }
+
+    form {
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        height: 100%;
+    }
+
+    input[type = "text"], input[type = "number"], input[type="date"], input[type="datetime"], textarea {
+        width: 200px;
+        display: block;
+        border-radius: 20px;
+        height: 25px;
+        padding-left: 10px;
+        margin: 2%;
+        margin-left: 0;
+
+    }
+
+    textarea {
+        resize: vertical;
+        height: 200px;
+        padding: 10px;
+    }
+
+    select {
+        display: block;
+        width: 215px;
+        border-radius: 20px;
+        height: 30px;
+        padding-left: 10px;
+        margin: 2%;
+        margin-left: 0;
+    }
+
+    input[type = submit] {
+        width: 215px;
+        display: block;
+        border-radius: 20px;
+        height: 25px;
+        padding-left: 10px;
+        background: linear-gradient(dodgerblue, lightblue) no-repeat;
+        border-width: 1px;
+        margin-top: 8%;
+        margin-left: 0;
+        margin-bottom: 5%;
+    }
+
+}
+@media screen and (min-width: 750px){
+    label{
+        display: inline-block;
+        width: 50%;
+        margin-top: 3%;
+    }
+    input, select{
+        display: inline-block;
+        width: 45%;
+        margin-top: 25px;
+        border-radius: 20px;
+        height: 25px;
+        padding-left: 10px;
+    }
+    textarea{
+        display: inline-block;
+        width: 45%;
+        margin-top: 3%;
+        border-radius: 20px;
+        height: 30%;
+        padding-left: 10px;
+
+    }
+    input[type=submit]{
+        width: 50%;
+        display: block;
+        border-radius: 20px;
+        height: 25px;
+        padding-left: 10px;
+        background: linear-gradient(dodgerblue, lightblue) no-repeat;
+        border-width: 1px;
+        margin-top: 8%;
+        margin-left: 25%;
+        margin-bottom: 5%;
+    }
+    form{
+       height: 100%;
+
+    }
+
+    #form {
+        margin-top: -20px;
+        margin-bottom: -25px;
+        display: block;
+        text-align: center;
+        width: 50%;
+        margin-left: 25%;
+        height: 100%;
+        overflow: inherit;
+        background: dodgerblue;
+
+    }
+}
