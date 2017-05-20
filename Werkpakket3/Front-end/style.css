@@ -7,10 +7,10 @@ h1{
     margin-left: 25%;
     text-align: center;
 }
+tr, td{
+    border: solid black 1px;
+}
 @media screen and (max-width: 750px){
-
-
-
     #form {
         display: block;
         text-align: center;
@@ -117,6 +117,5 @@ h1{
         height: 100%;
         overflow: inherit;
         background: dodgerblue;
-
     }
 }
