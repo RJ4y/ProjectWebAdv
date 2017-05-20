@@ -12,11 +12,12 @@ namespace repo;
 use ConnectionDb;
 use Evenement;
 
-include("Evenement.php");
-include("EventRepository.php");
-require_once 'ConnectionDb.php';
+include './domain classes/Repositories/IEventRepository.php';
+include './domain classes/Evenement.php';
+include './ConnectionDb.php';
 
-class PDOEventRepository implements EventRepository
+
+class PDOEventRepository //implements IEventRepository
 {
     private $connection = null;
 
@@ -24,8 +25,6 @@ class PDOEventRepository implements EventRepository
     {
         $this->connection = $connection;
     }
-
-
 
     public function findPerson($id)
     {
@@ -36,7 +35,7 @@ class PDOEventRepository implements EventRepository
             $results = $this->connection->query($sql);
             //$results = $statement->fetchAll(\PDO::FETCH_ASSOC);
             if (count($results) > 0) {
-                return new Event($results[0]['event_id'], $results[0]['event_name'], $results[0]['start_date'], $results[0]['end_date'], $results[0]['person_id']);
+                return new Evenement($results[0]['event_id'], $results[0]['event_name'], $results[0]['start_date'], $results[0]['end_date'], $results[0]['person_id']);
             } else {
                 return null;
             }
@@ -49,49 +48,41 @@ class PDOEventRepository implements EventRepository
     public function findEvents()
     {
         try {
-            $statement = $this->connection->prepare("SELECT * FROM evenementen");
-            $statement->execute();
-           // $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
-            $sql = "SELECT * FROM evenementen";
-            $results = $this->connection->query($sql);
-            if (count($results) > 0) {
-                return new Event($results[0]['event_id'], $results[0]['event_name'], $results[0]['start_date'], $results[0]['end_date'], $results[0]['person_id']);
-            } else {
-                return null;
+            $statementString = "SELECT * FROM evenementen";
+
+            $statement = $this->connection->query($statementString);
+            //$statement->setFetchMode(\PDO::FETCH_ASSOC);
+
+            $evenementen = array();
+            while ($row = $statement->fetch_assoc()) {
+                $evenementen[] =
+                    new Evenement($row['evenement_id'], $row['naam'], $row['klant_id'], $row['adres_id'],
+                        $row['type'], $row['planning_datum'], $row['omschrijving'], $row['personeel_id'],
+                        $row['start_datum'], $row['eind_datum'], $row['verwacht_gasten_aantal']);
             }
+            return $evenementen;
         } catch (\Exception $exception) {
-            return $exception;
+            return null;
         }
     }
 
     public function findEventById($id)
     {
-        try{
-        $connection = ConnectionDb::getConnection();
-        $statementString = "SELECT *
+        try {
+            $statementString = "SELECT *
                             FROM evenementen
-                            WHERE eventid =$id";
-        $statement = $connection->query($statementString);
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
-        $row = $statement->fetch();
-        if(count($row)==1) {
-            $event = new \Evenement();
-            $event->setAdministrator($row[0]);
-            $event->setTitel($row[1]);
-            $event->setDatumIngave($row[2]);
-            $event->setKlant($row[3]);
-            $event->setOmschrijvingEvenement($row[4]);
-            $event->setVerwachteAanwezigheid($row[5]);
-            $event->setType($row[6]);
-            $event->setMateriaal($row[7]);
-            $event->setToegewezenPersoneel($row[8]);
-
+                            WHERE evenement_id =$id";
+            $statement = $this->connection->query($statementString);
+            $row = $statement->fetch_assoc();
+            $event = null;
+            if (count($row) > 0) {
+                $event = new Evenement($row['evenement_id'], $row['naam'], $row['klant_id'], $row['adres_id'],
+                    $row['type'], $row['planning_datum'], $row['omschrijving'], $row['personeel_id'],
+                    $row['start_datum'], $row['eind_datum'], $row['verwacht_gasten_aantal']);
+            }
             return $event;
-        }else{
+        } catch (\Exception $exception) {
             return null;
-        }
-        }catch (\Exception $exception){
-            return $exception;
         }
     }
 

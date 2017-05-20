@@ -1,6 +1,5 @@
 <?php
 require_once 'PDOEventRepository.php';
-
 $url = parse_url(trim($_SERVER['REQUEST_URI']));
 $pathSegments = array_values(
     array_filter(explode('/', $url['path'])));
@@ -15,7 +14,7 @@ if ($method == 'GET') {
                 if ($event != null) { // eventid gevonden
                     http_response_code(200);
                     header('Content-Type: application/json');
-                    echo json_encode("$event");
+                    echo json_encode($event);
                 } else {
                     http_response_code(404); // eventid bestaat niet
                 }
@@ -25,8 +24,7 @@ if ($method == 'GET') {
         } else {
             $repo = new \repo\PDOEventRepository(ConnectionDb::getConnection());
                 $events = $repo->findEvents();
-                $events = "all events";
-                if ($events != null) { // eventid gevonden
+                if ($events != null) { // Geen events in database
                     http_response_code(200);
                     header('Content-Type: application/json' );
                     echo json_encode($events);

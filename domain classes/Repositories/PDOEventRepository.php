@@ -32,10 +32,10 @@ class PDOEventRepository implements IEventRepository
             $statementString = "SELECT * FROM evenementen";
 
             $statement = $connection->query($statementString);
-            $statement->setFetchMode(\PDO::FETCH_ASSOC);
+            //$statement->setFetchMode(\PDO::FETCH_ASSOC);
 
             $evenementen = array();
-            while ($row = $statement->fetch()) {
+            while ($row = $statement->fetch_assoc()) {
                 $evenementen[] =
                     new Evenement($row['evenement_id'], $row['naam'], $row['klant_id'], $row['adres_id'],
                         $row['type'], $row['planning_datum'], $row['omschrijving'], $row['personeel_id'],
