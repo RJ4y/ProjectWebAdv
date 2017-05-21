@@ -15,7 +15,7 @@ try {
             echo "event";
         }
    );
-    $router->map('GET','/event/[i:id]',
+    $router->map('GET','/events/[i:id]',
         function($id) {
             $connection = ConnectionDb::getConnection();
             $repo = new Repositories\PDOEventRepository($connection);
@@ -43,6 +43,14 @@ try {
             $repo->findEventByDate($fromDate , $toDate);
         }
     );
+    $router->map('POST' , '/events',function(){
+        $connection = ConnectionDb::getConnection();
+        $repo = new Repositories\PDOEventRepository($connection);
+        $evenement = new Evenement($_POST['id'] , $_POST['titel'] , $_POST['datum'] ,$_POST['klant'] ,$_POST['omschrijvingEvenement']
+            , $_POST['verwachteAanwzigheid'],$_POST['type'],$_POST['toegewezenPersoneel']
+            ,$_POST['startDatum'] , $_POST['eindDatum']);
+        $repo->AddEvent($evenement);
+    });
     $match = $router->match();
     if( $match && is_callable( $match['target'] ) ){
         call_user_func_array( $match['target'], $match['params'] );
