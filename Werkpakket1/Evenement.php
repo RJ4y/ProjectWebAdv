@@ -135,18 +135,12 @@
         /**
          * @return null
          */
-        public function getMateriaal()
-        {
-            return $this->materiaal;
-        }
+
 
         /**
          * @param null $materiaal
          */
-        public function setMateriaal($materiaal)
-        {
-            $this->materiaal = $materiaal;
-        }
+
 
         /**
          * @return null
@@ -169,6 +163,6 @@
         function __toString()
         {
             return $this->titel  . $this->datumIngave . $this->klant . $this->omschrijvingEvenement .
-                   $this->verwachteAanwezigheid . $this->type . $this->materiaal . $this->toegewezenPersoneel;
+                   $this->verwachteAanwezigheid . $this->type  . $this->toegewezenPersoneel;
         }
     }

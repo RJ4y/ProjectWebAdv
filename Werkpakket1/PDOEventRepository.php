@@ -127,9 +127,9 @@ require "Evenement.php";
     public function AddEvent(\Evenement $evenement){
         try{
             $id = $evenement->getId();
-            $naam = $evenement->getTitel();
+            $titel = $evenement->getTitel();
             $klant_id = $evenement->getKlant();
-            $adres_id = $evenement->getAdres();
+            $adres_id = 1;
             $type = $evenement->getType();
             $planningDatum = $evenement->getDatumIngave();
             $omschrijving = $evenement->getOmschrijvingEvenement();
@@ -138,11 +138,13 @@ require "Evenement.php";
             $eindDatum = $evenement->eindDatum;
             $gasten = $evenement->getVerwachteAanwezigheid();
 
-            $statementString = "INSERT INTO evenementen VALUES ($id , $naam , $klant_id , $adres_id , $type ,
-            $planningDatum , $omschrijving ,$personeel_id , $startDatum , $eindDatum , $gasten)";
+
+
+            $statementString="INSERT INTO evenementen VALUES ($id,'$titel',$klant_id,$adres_id,'$type ','$planningDatum','$omschrijving',$personeel_id,'$startDatum','$eindDatum',$gasten)";
             $result = $this->connection->query($statementString);
+           echo $result;
             if ($result === TRUE) {
-                echo "Evenement";
+                echo "Evenement toegevoegd";
             } else {
                 echo "Niet toegevoegd";
             }
