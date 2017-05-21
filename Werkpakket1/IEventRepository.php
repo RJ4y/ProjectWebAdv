@@ -6,7 +6,7 @@
  * Time: 9:16
  */
 
-namespace repo;
+namespace Repositories;
 
 
 interface IEventRepository

@@ -1,6 +1,6 @@
 <?php
     require_once 'Persoon.php';
-    require_once 'EnumRechten.php';
+    include "EnumRechten.php";
 class Personeel extends Persoon
 {
     private $personeelId;

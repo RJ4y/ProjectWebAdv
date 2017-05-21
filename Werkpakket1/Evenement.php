@@ -1,75 +1,45 @@
 <?php
-    require_once 'Personeel.php';
+    /*require_once 'Personeel.php';
     require_once 'Administrator.php';
     require_once 'Klant.php';
     require_once 'Date.php';
     require_once 'Materiaal.php';
-    require_once 'EnumTypes.php';
+    require_once 'EnumTypes.php';*/
     class Evenement
     {
-        public $eventId;
-        public $naam;
-        public $klantId;
-        public $adresId;
-        public $type;
-        public $planningDatum;
-        public $omschrijving;
-        public $personeelId;
+
+        public $id;
+        public $titel;
+        public $datumIngave;
         public $startDatum;
         public $eindDatum;
         public $verwachteAanwezigheid;
+        public $type;
+        public $toegewezenPersoneel;
 
-        /**
-         * Evenement constructor.
-         * @param $eventId
-         * @param $naam
-         * @param $klantId
-         * @param $adresId
-         * @param $type
-         * @param $planningDatum
-         * @param $omschrijving
-         * @param $personeelId
-         * @param $startDatum
-         * @param $eindDatum
-         * @param $verwachteAanwezigheid
-         */
-        public function __construct($eventId = null, $naam = null, $klantId = null, $adresId = null, $type = null,
-                                    $planningDatum = null, $omschrijving = null, $personeelId = null, $startDatum = null,
-                                    $eindDatum = null, $verwachteAanwezigheid = null)
+        public function __construct($id = null , $titel = null, $datum = null, $klant = null, $omschrijvingEvenement = null,
+                                    $verwachteAanwzigheid = null, $type = null, $toegewezenPersoneel = null,
+                                    $startDatum = null, $eindDatum = null)
         {
-            $this->eventId = $eventId;
-            $this->naam = $naam;
-            $this->klantId = $klantId;
-            $this->adresId = $adresId;
+            $this->id = $id;
+            $this->titel = $titel;
+            $this->datumIngave = $datum;
+            $this->klant = $klant;
+            $this->omschrijvingEvenement = $omschrijvingEvenement;
+            $this->verwachteAanwezigheid = $verwachteAanwzigheid;
             $this->type = $type;
-            $this->planningDatum = $planningDatum;
-            $this->omschrijving = $omschrijving;
-            $this->personeelId = $personeelId;
+
+            $this->toegewezenPersoneel = $toegewezenPersoneel;
             $this->startDatum = $startDatum;
             $this->eindDatum = $eindDatum;
             $this->verwachteAanwezigheid = $verwachteAanwezigheid;
         }
 
-        /**
-         * @return null
-         */
-        public function getEventId()
-        {
-            return $this->eventId;
+        public function getId(){
+            return$this->id;
         }
 
-        /**
-         * @param null $eventId
-         */
-        public function setEventId($eventId)
-        {
-            $this->eventId = $eventId;
-        }
-
-        /**
-         * @return null
-         */
-        public function getNaam()
+        public function getTitel()
         {
             return $this->naam;
         }
@@ -165,22 +135,6 @@
         /**
          * @return null
          */
-        public function getPersoneelId()
-        {
-            return $this->personeelId;
-        }
-
-        /**
-         * @param null $personeelId
-         */
-        public function setPersoneelId($personeelId)
-        {
-            $this->personeelId = $personeelId;
-        }
-
-        /**
-         * @return null
-         */
         public function getStartDatum()
         {
             return $this->startDatum;
@@ -218,11 +172,9 @@
             return $this->verwachteAanwezigheid;
         }
 
-        /**
-         * @param null $verwachteAanwezigheid
-         */
-        public function setVerwachteAanwezigheid($verwachteAanwezigheid)
+        public function __toString()
         {
-            $this->verwachteAanwezigheid = $verwachteAanwezigheid;
+            return $this->titel  . $this->datumIngave . $this->klant . $this->omschrijvingEvenement .
+                   $this->verwachteAanwezigheid . $this->type  . $this->toegewezenPersoneel;
         }
     }

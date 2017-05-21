@@ -1,6 +1,6 @@
 <?php
     require_once 'Persoon.php';
-    require_once 'EnumRechten.php';
+    include "EnumRechten.php";
 class Administrator extends Persoon
 {
     private $administratorId;

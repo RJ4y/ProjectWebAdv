@@ -5,9 +5,11 @@
  * Date: 29/03/2017
  * Time: 09:34
  */
- class ConnectionDb{
+//require "PDOEventRepository.php";
+  class ConnectionDb{
+
      public static function getConnection(){
-         $config = simplexml_load_file("config.xml");
+       // $config = simplexml_load_file("config.xml");
         // $host=(string)$config->host;
          //$user=$config->dbUser;
          //$password=$config->dbPw;
@@ -19,13 +21,14 @@
          $pdo=null;
          try {
              $connection = new mysqli($host, $user, $password, $database);
-
              return $connection;
-         } catch ( PDOException $e ) {
+         } catch ( Exception $e ) {
              print 'Exception!: ' . $e->getMessage();
          }
          $pdo = null;
+
      }
-}
+
+  }
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-    require_once 'EnumLanden.php';
+    include "EnumLanden.php";
 class Adres
 {
     private $straat;
