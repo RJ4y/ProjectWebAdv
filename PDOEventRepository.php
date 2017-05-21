@@ -86,12 +86,35 @@ class PDOEventRepository //implements IEventRepository
         }
     }
 
-    public function CreateEvent($naam , $klant_id ,$adres_id, $type ,$planning_datum , $omschrijving, $personeel_id ,$start_datum , $eind_datum , $aantalGasten ){
+    public function CreateEvent($event){
         try {
-
-            $statement = $this->connection->prepare("INSERT INTO evenementen VALUES ($naam , $klant_id ,$adres_id, $type ,$planning_datum , $omschrijving, $personeel_id ,$start_datum , $eind_datum , $aantalGasten ) ");
-            $statement->execute();
-            $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            $evenement = $event;
+            $event_id = $evenement['eventId'];
+            $naam = $evenement['naam'];
+            $klant_id = 1;
+            $adres_id = 1;
+            $type = "TypeTest";
+            $planning_datum = '2017-01-01';
+            $omschrijving = "Omschrijving test";
+            $personeel_id = 1;
+            $start_datum = '2017-01-02';
+            $eind_datum = '2017-01-03';
+            $aantalGasten = 123;
+            /*$klant_id = $evenement['klantId'];
+            $adres_id = $evenement['adres_id'];
+            $type = $evenement['type'];
+            $planning_datum = $evenement['planningDatum'];
+            $omschrijving = $evenement['omschrijving'];
+            $personeel_id = $evenement['personeelId'];
+            $start_datum = $evenement['startDatum'];
+            $eind_datum = $evenement['eindDatum'];
+            $aantalGasten = $evenement['aantalGasten'];*/
+            $statementStr = "INSERT INTO evenementen VALUES ($event_id, $naam , $klant_id ,$adres_id, $type ,$planning_datum , $omschrijving, $personeel_id ,$start_datum , $eind_datum , $aantalGasten )";
+            if($this->connection->query($statementStr) === TRUE){
+                return $event;
+            }else{
+                return "Error: " . $statementStr . "<br>" . $this->connection->error;
+            }
 
         } catch (\Exception $exception) {
             return $exception;

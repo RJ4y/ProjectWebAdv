@@ -23,19 +23,19 @@ if ($method == 'GET') {
             }
         } else {
             $repo = new \repo\PDOEventRepository(ConnectionDb::getConnection());
-                $events = $repo->findEvents();
-                if ($events != null) { // Geen events in database
-                    http_response_code(200);
-                    header('Content-Type: application/json' );
-                    echo json_encode($events);
-                } else {
-                    http_response_code(404); // eventid bestaat niet
-                }
-             }
-        }else{
-        if ($pathSegments[3] == "Person"){
-            if (isset($pathSegments[4])){
-                if (is_numeric($pathSegments[4])){
+            $events = $repo->findEvents();
+            if ($events != null) { // Geen events in database
+                http_response_code(200);
+                header('Content-Type: application/json');
+                echo json_encode($events);
+            } else {
+                http_response_code(404); // eventid bestaat niet
+            }
+        }
+    } else {
+        if ($pathSegments[3] == "Person") {
+            if (isset($pathSegments[4])) {
+                if (is_numeric($pathSegments[4])) {
                     $repo = new \repo\PDOEventRepository(ConnectionDb::getConnection());
 
                     $person = $repo->findPerson($pathSegments[4]);
@@ -43,24 +43,36 @@ if ($method == 'GET') {
                         http_response_code(200);
                         header('Content-Type: application/json');
                         echo json_encode("$person");
+                    }
                 }
-            }
             } else {
                 http_response_code(404); // eventid bestaat niet
             }
         }
     }
-    }
-    if( isset($pathSegments[3]) && strcmp($pathSegments[3] , "person") == 0){
-        if (isset($pathSegments[4])){
+    if (isset($pathSegments[3]) && strcmp($pathSegments[3], "person") == 0) {
+        if (isset($pathSegments[4])) {
             $events = \repo\PDOEventRepository::findPerson($pathSegments[4]);
-            if ($events != 0){
+            if ($events != 0) {
                 http_response_code(200);
                 header('Content-Type: application/json');
                 echo json_encode($events);
             }
         }
-
     }
+} else {
+    if ($method == 'POST') {
+        if (isset($pathSegments[3])) {
+            if ($pathSegments[3] == "events") {
+                $evenement = json_decode($requestBody, true);
+                $repo = new \repo\PDOEventRepository(ConnectionDb::getConnection());
+                $createdEvent = $repo->CreateEvent($evenement);
+                http_response_code(201);
+                header('Content-Type: application/json');
+                echo $createdEvent;
 
+            }
+        }
+    }
+}
 ?>

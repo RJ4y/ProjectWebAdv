@@ -16,11 +16,23 @@ function getEventById(url, div, eventId) {
     });
 }
 
-function addEvent(url, div, event){
+function addEvent(url, event){
     fetch(url, {
         method: 'post',
-        
-    })
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(event)
+    }).then(function(response){
+       if(response.status == 201){
+           alert("Event created !");
+           //window.location.href = 'EvenementById.html';
+       }else{
+           alert("Something went wrong !\n" + response.status);
+       }
+    }).catch(function (error) {
+        alert("Error: " + error);
+    });
 }
 
 function returnEventsInTable(event) {
