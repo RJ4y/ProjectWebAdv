@@ -11,49 +11,99 @@
         public $id;
         public $titel;
         public $datumIngave;
+        public $klantId;
         public $startDatum;
         public $eindDatum;
+        public $omschrijving;
         public $verwachteAanwezigheid;
         public $type;
         public $toegewezenPersoneel;
 
-        public function __construct($id = null , $titel = null, $datum = null, $klant = null, $omschrijvingEvenement = null,
-                                    $verwachteAanwzigheid = null, $type = null, $toegewezenPersoneel = null,
-                                    $startDatum = null, $eindDatum = null)
+        /**
+         * Evenement constructor.
+         */
+        public function __construct()
         {
-            $this->id = $id;
-            $this->titel = $titel;
-            $this->datumIngave = $datum;
-            $this->klant = $klant;
-            $this->omschrijvingEvenement = $omschrijvingEvenement;
-            $this->verwachteAanwezigheid = $verwachteAanwzigheid;
-            $this->type = $type;
-
-            $this->toegewezenPersoneel = $toegewezenPersoneel;
-            $this->startDatum = $startDatum;
-            $this->eindDatum = $eindDatum;
-            $this->verwachteAanwezigheid = $verwachteAanwezigheid;
-        }
-
-        public function getId(){
-            return$this->id;
-        }
-
-        public function getTitel()
-        {
-            return $this->naam;
         }
 
         /**
-         * @param null $naam
+         * Evenement constructor.
+         * @param $id
+         * @param $titel
+         * @param $datumIngave
+         * @param $klantId
+         * @param $startDatum
+         * @param $eindDatum
+         * @param $verwachteAanwezigheid
+         * @param $type
+         * @param $toegewezenPersoneel
          */
-        public function setNaam($naam)
+        /**public function __construct($id = null, $titel = null, $datumIngave = null, $klantId = null, $startDatum = null,
+                                    $eindDatum = null, $verwachteAanwezigheid = null, $type = null, $toegewezenPersoneel = null)
         {
-            $this->naam = $naam;
+            $this->id = $id;
+            $this->titel = $titel;
+            $this->datumIngave = $datumIngave;
+            $this->klantId = $klantId;
+            $this->startDatum = $startDatum;
+            $this->eindDatum = $eindDatum;
+            $this->verwachteAanwezigheid = $verwachteAanwezigheid;
+            $this->type = $type;
+            $this->toegewezenPersoneel = $toegewezenPersoneel;
+        }*/
+
+
+
+        /**
+         * @return null
+         */
+        public function getId()
+        {
+            return $this->id;
+        }
+
+        /**
+         * @param null $id
+         */
+        public function setId($id)
+        {
+            $this->id = $id;
         }
 
         /**
          * @return null
+         */
+        public function getTitel()
+        {
+            return $this->titel;
+        }
+
+        /**
+         * @param null $titel
+         */
+        public function setTitel($titel)
+        {
+            $this->titel = $titel;
+        }
+
+        /**
+         * @return null
+         */
+        public function getDatumIngave()
+        {
+            return $this->datumIngave;
+        }
+
+        /**
+         * @param null $datumIngave
+         */
+        public function setDatumIngave($datumIngave)
+        {
+            $this->datumIngave = $datumIngave;
+        }
+
+        /**
+         * @return mixed
          */
         public function getKlantId()
         {
@@ -61,7 +111,7 @@
         }
 
         /**
-         * @param null $klantId
+         * @param mixed $klantId
          */
         public function setKlantId($klantId)
         {
@@ -69,55 +119,7 @@
         }
 
         /**
-         * @return null
-         */
-        public function getAdresId()
-        {
-            return $this->adresId;
-        }
-
-        /**
-         * @param null $adresId
-         */
-        public function setAdresId($adresId)
-        {
-            $this->adresId = $adresId;
-        }
-
-        /**
-         * @return null
-         */
-        public function getType()
-        {
-            return $this->type;
-        }
-
-        /**
-         * @param null $type
-         */
-        public function setType($type)
-        {
-            $this->type = $type;
-        }
-
-        /**
-         * @return null
-         */
-        public function getPlanningDatum()
-        {
-            return $this->planningDatum;
-        }
-
-        /**
-         * @param null $planningDatum
-         */
-        public function setPlanningDatum($planningDatum)
-        {
-            $this->planningDatum = $planningDatum;
-        }
-
-        /**
-         * @return null
+         * @return mixed
          */
         public function getOmschrijving()
         {
@@ -125,13 +127,12 @@
         }
 
         /**
-         * @param null $omschrijving
+         * @param mixed $omschrijving
          */
         public function setOmschrijving($omschrijving)
         {
             $this->omschrijving = $omschrijving;
         }
-
         /**
          * @return null
          */
@@ -172,9 +173,43 @@
             return $this->verwachteAanwezigheid;
         }
 
-        public function __toString()
+        /**
+         * @param null $verwachteAanwezigheid
+         */
+        public function setVerwachteAanwezigheid($verwachteAanwezigheid)
         {
-            return $this->titel  . $this->datumIngave . $this->klant . $this->omschrijvingEvenement .
-                   $this->verwachteAanwezigheid . $this->type  . $this->toegewezenPersoneel;
+            $this->verwachteAanwezigheid = $verwachteAanwezigheid;
+        }
+
+        /**
+         * @return null
+         */
+        public function getType()
+        {
+            return $this->type;
+        }
+
+        /**
+         * @param null $type
+         */
+        public function setType($type)
+        {
+            $this->type = $type;
+        }
+
+        /**
+         * @return null
+         */
+        public function getToegewezenPersoneel()
+        {
+            return $this->toegewezenPersoneel;
+        }
+
+        /**
+         * @param null $toegewezenPersoneel
+         */
+        public function setToegewezenPersoneel($toegewezenPersoneel)
+        {
+            $this->toegewezenPersoneel = $toegewezenPersoneel;
         }
     }

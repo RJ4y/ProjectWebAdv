@@ -8,15 +8,15 @@ try {
 
     $router = new AltoRouter();
 
+    //$router->setBasePath('/~user/Werkpakket1/api');
 
-    $router->setBasePath('/~user/Werkpakket1/api');
-
-    $router->map('GET','/event',
+    $router->map('GET','/events',
         function() {
+            echo 'Test';
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
             $event= $repo->findEvents();
-            if ($event != null) { // eventid gevonden
+            if ($event != null) {
                 http_response_code(200);
                 header('Content-Type: application/json');
                 echo json_encode($event);
@@ -25,7 +25,7 @@ try {
             }
         }
    );
-    $router->map('GET','/event/[i:id]',
+    $router->map('GET','/events/[i:id]',
         function($id) {
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
@@ -39,7 +39,7 @@ try {
             }
         }
     );
-    $router->map('GET','/event/person/[i:id]',
+    $router->map('GET','/events/person/[i:id]',
         function($id) {
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
@@ -104,11 +104,6 @@ try {
         $evenement->startDatum =  $_POST['startDatum'];
         $evenement->eindDatum =  $_POST['eindDatum'];
         $repo->AddEvent($evenement);
-
-
-
-
-
     });
 
     $match = $router->match();

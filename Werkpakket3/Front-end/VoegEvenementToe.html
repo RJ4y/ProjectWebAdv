@@ -11,6 +11,8 @@
 <h1>Evenement toevoegen</h1>
 <div id="form">
 <form onsubmit="sendPostRequest()">
+    <label for="id">Event id</label>
+    <input type="number" id="id">
     <label for="naam">Naam</label>
     <input type="text" id="naam">
     <label for="klant">Klant</label>
@@ -33,6 +35,8 @@
         <option value="type2">type 2</option>
         <option value="type3">type 3</option>
     </select>
+    <label for="verwachteAanwezigheid">Verwachte aanwezigheid</label>
+    <input type="number" id="verwachteAanwezigheid">
     <label for="planning_datum">Planning datum</label>
     <input type="date" id="planning_datum">
     <label for="omschrijving">Omschrijving</label>
@@ -44,16 +48,23 @@
         <option value="persooneelslid3">persooneelslid 3</option>
     </select>
     <label for="start_datum">Start evenement</label>
-    <input type="datetime" id="start_datum" placeholder="DD/MM/YYY HH:MM">
+    <input type="date" id="start_datum">
     <label for="eind_datum">Einde evenment</label>
-    <input type="datetime" id="eind_datum" placeholder="DD/MM/YYYY HH:MM">
+    <input type="date" id="eind_datum">
     <input type="submit" value="Voeg toe">
 </form>
     <script>
         function sendPostRequest() {
             var event = {
-                "eventId": 101,
-                "naam":document.getElementById('naam').value
+                "id": document.getElementById('id').value,
+                "titel":document.getElementById('naam').value,
+                "datumIngave":document.getElementById('planning_datum').value,
+                "klantId":1,
+                "startDatum":document.getElementById('start_datum').value,
+                "eindDatum":document.getElementById('eind_datum').value,
+                "verwachteAanwezigheid":document.getElementById('verwachteAanwezigheid').value,
+                "type":document.getElementById('type').value,
+                "toegewezenPersoneel":1,
             };
             addEvent('http://192.168.226.128/~user/WebAdvancedProject/api.php/events/', event);
             return false;

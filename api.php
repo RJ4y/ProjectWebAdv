@@ -1,5 +1,6 @@
 <?php
-require_once 'PDOEventRepository.php';
+require_once 'Werkpakket1/PDOEventRepository.php';
+require_once 'Werkpakket1/ConnectionDb.php';
 $url = parse_url(trim($_SERVER['REQUEST_URI']));
 $pathSegments = array_values(
     array_filter(explode('/', $url['path'])));
@@ -42,7 +43,7 @@ if ($method == 'GET') {
                     if ($person != null) { // persons gevonden
                         http_response_code(200);
                         header('Content-Type: application/json');
-                        echo json_encode("$person");
+                        echo json_encode($person);
                     }
                 }
             } else {
@@ -64,13 +65,24 @@ if ($method == 'GET') {
     if ($method == 'POST') {
         if (isset($pathSegments[3])) {
             if ($pathSegments[3] == "events") {
-                $evenement = json_decode($requestBody, true);
-                $repo = new \repo\PDOEventRepository(ConnectionDb::getConnection());
-                $createdEvent = $repo->CreateEvent($evenement);
-                http_response_code(201);
-                header('Content-Type: application/json');
-                echo $createdEvent;
-
+                $evenementJson = json_decode($requestBody, true);
+                $evenement = new Evenement();
+                $evenement->setId($evenementJson['id']);
+                $evenement->setTitel($evenementJson['titel']);
+                $evenement->setDatumIngave($evenementJson['datumIngave']);
+                $evenement->setKlantId($evenementJson['klantId']);
+                $evenement->setStartDatum($evenementJson['startDatum']);
+                $evenement->setEindDatum($evenementJson['eindDatum']);
+                $evenement->setVerwachteAanwezigheid($evenementJson['verwachteAanwezigheid']);
+                $evenement->setType($evenementJson['type']);
+                $evenement->setToegewezenPersoneel($evenementJson['toegewezenPersoneel']);
+                $repo = new \Repositories\PDOEventRepository(ConnectionDb::getConnection());
+                $createdEvent = $repo->AddEvent($evenement);
+                if($createdEvent!=null){
+                    http_response_code(201);
+                    header('Content-Type: application/json');
+                    echo json_encode($createdEvent);
+                }
             }
         }
     }
