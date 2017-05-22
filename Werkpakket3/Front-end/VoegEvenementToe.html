@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Evenement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="werkpakket3.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Evenement toevoegen</h1>
+<div id="form">
+<form onsubmit="sendPostRequest()">
+    <label for="id">Event id</label>
+    <input type="number" id="id">
+    <label for="naam">Naam</label>
+    <input type="text" id="naam">
+    <label for="klant">Klant</label>
+    <select id="klant">
+        <option value="klant1">klant 1</option>
+        <option value="klant2">klant 2</option>
+        <option value="klant3">klant 3</option>
+    </select>
+    <label for="straat">Straat</label>
+    <input type="text" id="straat">
+    <label for="nummer">Huisnummer</label>
+    <input type="number" id="nummer">
+    <label for="gemeente">Gemeente</label>
+    <input type="text" id="gemeente">
+    <label for="postcode">Postcode</label>
+    <input type="number" id="postcode">
+    <label for="type">Type</label>
+    <select id="type">
+        <option value="type1">type 1</option>
+        <option value="type2">type 2</option>
+        <option value="type3">type 3</option>
+    </select>
+    <label for="verwachteAanwezigheid">Verwachte aanwezigheid</label>
+    <input type="number" id="verwachteAanwezigheid">
+    <label for="planning_datum">Planning datum</label>
+    <input type="date" id="planning_datum">
+    <label for="omschrijving">Omschrijving</label>
+    <textarea id="omschrijving"></textarea>
+    <label for="personeel">Type</label>
+    <select id="personeel">
+        <option value="persooneelslid1">persooneelslid 1</option>
+        <option value="persooneelslid2">persooneelslid 2</option>
+        <option value="persooneelslid3">persooneelslid 3</option>
+    </select>
+    <label for="start_datum">Start evenement</label>
+    <input type="date" id="start_datum">
+    <label for="eind_datum">Einde evenment</label>
+    <input type="date" id="eind_datum">
+    <input type="submit" value="Voeg toe">
+</form>
+    <script>
+        function sendPostRequest() {
+            var event = {
+                "id": document.getElementById('id').value,
+                "titel":document.getElementById('naam').value,
+                "datumIngave":document.getElementById('planning_datum').value,
+                "klantId":1,
+                "startDatum":document.getElementById('start_datum').value,
+                "eindDatum":document.getElementById('eind_datum').value,
+                "verwachteAanwezigheid":document.getElementById('verwachteAanwezigheid').value,
+                "type":document.getElementById('type').value,
+                "toegewezenPersoneel":1,
+            };
+            addEvent('http://192.168.226.128/~user/WebAdvancedProject/api.php/events/', event);
+            return false;
+        }
+
+    </script>
+</div>
+</body>
+</html>
