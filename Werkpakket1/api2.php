@@ -11,11 +11,15 @@ try {
 
     $router->setBasePath('/~user/Werkpakket1/api');
 
-    $router->map('GET','/event',
+    $router->map('GET','/events',
         function() {
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
-            $event= $repo->findEvents();
+            if (isset($_GET["from"])& isset($_GET["until"])){
+                $event = $repo->findEventByDate($_GET["from"] , $_GET["until"]);
+            }else{
+                $event= $repo->findEvents();
+            }
             if ($event != null) { // eventid gevonden
                 http_response_code(200);
                 header('Content-Type: application/json');
@@ -25,7 +29,27 @@ try {
             }
         }
    );
-    $router->map('GET','/event/[i:id]',
+    $router->map('GET','/events/',
+        function() {
+            $connection = ConnectionDb::getConnection();
+            $repo = new PDOEventRepository($connection);
+            if (isset($_GET["from"])& isset($_GET["until"])){
+                $event = $repo->findEventByDate($_GET["from"] , $_GET["until"]);
+                if ($event != null) { // eventid gevonden
+                    http_response_code(200);
+                    header('Content-Type: application/json');
+                    echo json_encode($event);
+                } else {
+                    http_response_code(404); // eventid bestaat niet
+                }
+            }else{
+                echo "Parameters zijn niet meegegeven";
+
+            }
+
+        }
+    );
+    $router->map('GET','/events/[i:id]',
         function($id) {
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
@@ -39,7 +63,7 @@ try {
             }
         }
     );
-    $router->map('GET','/event/person/[i:id]',
+    $router->map('GET','/events/person/[i:id]',
         function($id) {
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
@@ -53,38 +77,27 @@ try {
             }
         }
     );
-    $router->map('GET','/events',
-        function() {
-           $from = $_GET["from"];
-           $until = $_GET["until"];
-            $connection = ConnectionDb::getConnection();
-            $repo = new Repositories\PDOEventRepository($connection);
-            $event =$repo->findEventByDate($from ,$until);
-            if ($event != null) { // eventid gevonden
-                http_response_code(200);
-                header('Content-Type: application/json');
-                echo json_encode($event);
-            } else {
-                http_response_code(404); // eventid bestaat niet
-            }
-
-        }
-    );
-    $router->map('GET','/person/{personId}/events',
+    $router->map('GET','/person/[i:id]/events',
         function($id) {
+
              $connection = ConnectionDb::getConnection();
              $repo = new Repositories\PDOEventRepository($connection);
-             $fromDate = $_GET["from"];
-             $toDate = $_GET["until"];
-           $event = $repo->findEventByDateAndPerson($id , $fromDate , $toDate);
-            if ($event != null) { // eventid gevonden
-                http_response_code(200);
-                header('Content-Type: application/json');
-                echo json_encode($event);
-            } else {
-                http_response_code(404); // eventid bestaat niet
+            if (isset($_GET["from"]) & isset($_GET["until"])){
+                $fromDate = $_GET["from"];
+                $toDate = $_GET["until"];
+                $event = $repo->findEventByDateAndPerson($id , $fromDate , $toDate);
+                if ($event != null) { // eventid gevonden
+                    http_response_code(200);
+                    header('Content-Type: application/json');
+                    echo json_encode($event);
+                } else {
+                    http_response_code(404); // eventid bestaat niet
+                }
+            }else{
+                echo "Parameters zijn niet meegegeven";
             }
-            echo "datumPersoon";
+
+
         }
     );
 

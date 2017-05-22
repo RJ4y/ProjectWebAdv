@@ -142,7 +142,6 @@ require "Evenement.php";
 
             $statementString="INSERT INTO evenementen VALUES ($id,'$titel',$klant_id,$adres_id,'$type ','$planningDatum','$omschrijving',$personeel_id,'$startDatum','$eindDatum',$gasten)";
             $result = $this->connection->query($statementString);
-           echo $result;
             if ($result === TRUE) {
                 echo "Evenement toegevoegd";
             } else {
