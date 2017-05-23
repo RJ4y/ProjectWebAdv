@@ -9,14 +9,11 @@ try {
 
     $router = new AltoRouter();
 
-    //$router->setBasePath('/~user/Werkpakket1/api');
-
-    $router->setBasePath('/~user/Werkpakket1/api');
+    $router->setBasePath('/~user/werkpakket1/api');
 
     $router->map('GET','/events',
         function() {
-            echo 'Test';
-            $connection = ConnectionDb::getConnection();
+                       $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
             $view = new JsonView();
             $controller = new EvenementController($repo , $view);
@@ -66,21 +63,22 @@ try {
     $router->map('POST' , '/events'
         ,function(){
         $evenement = new Evenement();
-        $evenement->titel = $_POST['titel'];
-        $evenement->id = $_POST['id'];
-        $evenement->datumIngave = $_POST['datumIngave'];
-        $evenement->klant = $_POST['klant'];
-        $evenement->omschrijvingEvenement =  $_POST['omschrijvingEvenement'];
-        $evenement->verwachteAanwezigheid =  $_POST['verwachteAanwezigheid'];
-        $evenement->type =  $_POST['type'];
-        $evenement->toegewezenPersoneel =  $_POST['toegewezenPersoneel'];
-        $evenement->startDatum =  $_POST['startDatum'];
-        $evenement->eindDatum =  $_POST['eindDatum'];
-            $connection = ConnectionDb::getConnection();
-            $repo = new PDOEventRepository($connection);
-            $view = new JsonView();
-            $controller = new EvenementController($repo , $view);
-            $controller->AddEvent($evenement);
+        $evenement->setTitel($_POST['titel']);
+        $evenement->setId($_POST['id']);
+        $evenement->setDatumIngave($_POST['datumIngave']);
+        $evenement->setKlantId($_POST['klant']);
+        $evenement->setOmschrijving($_POST['omschrijvingEvenement']);
+        $evenement->setVerwachteAanwezigheid($_POST['verwachteAanwezigheid']);
+        $evenement->setType($_POST['type']);
+        $evenement->setToegewezenPersoneel($_POST['toegewezenPersoneel']);
+        $evenement->setStartDatum($_POST['startDatum']);
+        $evenement->setEindDatum($_POST['eindDatum']);
+        $connection = ConnectionDb::getConnection();
+        $repo = new PDOEventRepository($connection);
+        $view = new JsonView();
+        $controller = new EvenementController($repo , $view);
+        $controller->AddEvent($evenement);
+
     });
 
     $match = $router->match();

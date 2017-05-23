@@ -9,13 +9,19 @@
   class ConnectionDb{
 
      public static function getConnection(){
-         $config = simplexml_load_file("config.xml");
+        /* $config = simplexml_load_file("config.xml");
          $host = trim((String)$config->host);
          $user = trim((String)$config->dbUser);
          $password = trim((String)$config->dbPw);
          $database = trim((String)$config->dbName);
          $pdo = null;
-         try {
+
+        */
+         $host = "localhost";
+         $user = "root";
+         $password = "user";
+         $database = "monkeybussines";
+        try {
              $connection = new mysqli($host, $user, $password, $database);
              return $connection;
          } catch ( Exception $e ) {

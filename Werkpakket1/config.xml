@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<database>
+    <host>
+        localhost
+    </host>
+    <hostUser>
+        user
+    </hostUser>
+    <hostPW>
+        user
+    </hostPW>
+    <dbUser>
+        root
+    </dbUser>
+    <dbPw>
+        user
+    </dbPw>
+    <dbName>
+        monkeybussines
+    </dbName>
+</database>

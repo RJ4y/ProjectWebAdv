@@ -7,15 +7,11 @@
  */
 
 namespace Repositories;
-
-
-
-
 use Evenement;
-use SebastianBergmann\Exporter\Exception;
+//use SebastianBergmann\Exporter\Exception;
 
 require "Evenement.php";
- class PDOEventRepository implements IEventRepository
+ class PDOEventRepository //implements IEventRepository
 {
     public $connection = null;
 
@@ -28,21 +24,21 @@ require "Evenement.php";
     public function findEvents()
     {
         try {
-            echo 'in method';
             $statementString = "SELECT * FROM evenementen";
-
             $connection =$this->connection;
             $result = $connection->query($statementString);
 
             $evenementen = array();
             if ($result->num_rows > 0){
                 while ($row = $result->fetch_assoc()) {
-                    $evenementen[] =
-                    new Evenement($row['evenement_id'] , $row['naam'], $row['planning_datum'] , $row['klant_id'] , $row['omschrijving'] ,
-                        $row['verwacht_gasten_aantal'] ,  $row['type'] ,$row['personeel_id'] ,$row['start_datum'], $row['eind_datum']  );
+                 $evenementen[] =
+                 $evenementen[] =
+                     new Evenement($row['evenement_id'] , $row['naam'], $row['planning_datum'] , $row['klant_id'] , $row['omschrijving'] ,
+                         $row['start_datum'] ,$row['eind_datum'],$row['verwacht_gasten_aantal'], $row['type'] ,$row['personeel_id']);
+
                 }
+                return $evenementen;
             }
-            return $evenementen;
         } catch (\Exception $exception) {
             throw $exception;
         }
@@ -63,7 +59,7 @@ require "Evenement.php";
                 while ($row = $result->fetch_assoc()) {
                     $evenementen[] =
                        new Evenement($row['evenement_id'] , $row['naam'], $row['planning_datum'] , $row['klant_id'] , $row['omschrijving'] ,
-                           $row['verwacht_gasten_aantal'] ,  $row['type'] ,$row['personeel_id'] ,$row['start_datum'], $row['eind_datum']  );
+                           $row['start_datum'] ,$row['eind_datum'],$row['verwacht_gasten_aantal'], $row['type'] ,$row['personeel_id']);
 
                 }
             }
@@ -80,8 +76,9 @@ require "Evenement.php";
            if ($result->num_rows >0){
                while ($row = $result->fetch_assoc()){
                $evenementen[] =
+               $evenementen[] =
                    new Evenement($row['evenement_id'] , $row['naam'], $row['planning_datum'] , $row['klant_id'] , $row['omschrijving'] ,
-                       $row['verwacht_gasten_aantal'] ,  $row['type'] ,$row['personeel_id'] ,$row['start_datum'], $row['eind_datum']  );
+                       $row['start_datum'] ,$row['eind_datum'],$row['verwacht_gasten_aantal'], $row['type'] ,$row['personeel_id']);
                }
            }
            return $evenementen;
@@ -100,8 +97,9 @@ require "Evenement.php";
             if ($result->num_rows >0){
                 while ($row = $result->fetch_assoc()){
                    $evenementen[] =
+                   $evenementen[] =
                        new Evenement($row['evenement_id'] , $row['naam'], $row['planning_datum'] , $row['klant_id'] , $row['omschrijving'] ,
-                           $row['verwacht_gasten_aantal'] ,  $row['type'] ,$row['personeel_id'] ,$row['start_datum'], $row['eind_datum']  );
+                           $row['start_datum'] ,$row['eind_datum'],$row['verwacht_gasten_aantal'], $row['type'] ,$row['personeel_id']);
                 }
             }
             return $evenementen;
@@ -117,8 +115,9 @@ require "Evenement.php";
             if ($result->num_rows >0){
                 while ($row = $result->fetch_assoc()){
                     $evenementen[] =
+                    $evenementen[] =
                         new Evenement($row['evenement_id'] , $row['naam'], $row['planning_datum'] , $row['klant_id'] , $row['omschrijving'] ,
-                            $row['verwacht_gasten_aantal'] ,  $row['type'] ,$row['personeel_id'] ,$row['start_datum'], $row['eind_datum']  );
+                            $row['start_datum'] ,$row['eind_datum'],$row['verwacht_gasten_aantal'], $row['type'] ,$row['personeel_id']);
                 }
             }
             return $evenementen;
@@ -143,10 +142,11 @@ require "Evenement.php";
             $statementString="INSERT INTO evenementen VALUES ($id,'$titel',$klant_id,$adres_id,'$type ','$planningDatum','$omschrijving',$personeel_id,'$startDatum','$eindDatum',$gasten)";
             $result = $this->connection->query($statementString);
             if ($result === TRUE) {
-                return $evenement;
+                echo "evenement toegevoegd";
             } else {
-                return null;
+                echo "evenement niet toegevoegd";
             }
+
         } catch (\Exception $exception){
             return $exception;
         }

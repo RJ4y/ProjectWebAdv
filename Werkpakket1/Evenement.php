@@ -1,6 +1,9 @@
 <?php
 
-    class Evenement
+/**
+ * @property  omschrijvingEvenement
+     */
+class Evenement
     {
 
         public $id;
@@ -14,12 +17,6 @@
         public $type;
         public $toegewezenPersoneel;
 
-        /**
-         * Evenement constructor.
-         */
-        public function __construct()
-        {
-        }
 
         /**
          * Evenement constructor.
@@ -33,7 +30,7 @@
          * @param $type
          * @param $toegewezenPersoneel
          */
-        /**public function __construct($id = null, $titel = null, $datumIngave = null, $klantId = null, $startDatum = null,
+        public function __construct($id = null, $titel = null, $datumIngave = null, $klantId = null,$omschrijving = null, $startDatum = null,
                                     $eindDatum = null, $verwachteAanwezigheid = null, $type = null, $toegewezenPersoneel = null)
         {
             $this->id = $id;
@@ -45,7 +42,8 @@
             $this->verwachteAanwezigheid = $verwachteAanwezigheid;
             $this->type = $type;
             $this->toegewezenPersoneel = $toegewezenPersoneel;
-        }*/
+            $this->omschrijving = $omschrijving;
+        }
 
         public function getId()
         {
@@ -155,7 +153,7 @@
 
         function __toString()
         {
-            return $this->titel  . $this->datumIngave . $this->klant . $this->omschrijvingEvenement .
+            return $this->titel  . $this->datumIngave . $this->klantId . $this->omschrijving .
                    $this->verwachteAanwezigheid . $this->type  . $this->toegewezenPersoneel;
         }
     }
