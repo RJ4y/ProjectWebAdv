@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="note">
+                <source>note</source>
+                <target>NOTITIE</target>
+            </trans-unit>
+            <trans-unit id="tip">
+                <source>tip</source>
+                <target>TIP</target>
+            </trans-unit>
+            <trans-unit id="not_available">
+                <source>not_available</source>
+                <target>Niet beschikbaar</target>
+            </trans-unit>
+            <trans-unit id="pxl_license">
+                <source>pxl_license</source>
+                <target>PXL Licentie</target>
+            </trans-unit>
+
+            <trans-unit id="title.homepage">
+                <source>title.homepage</source>
+                <target><![CDATA[Welkom bij de <strong>Werk Packet 4</strong> applicatie]]></target>
+            </trans-unit>
+            <trans-unit id="title.source_code">
+                <source>title.source_code</source>
+                <target>Broncode van deze pagina</target>
+            </trans-unit>
+            <trans-unit id="title.controller_code">
+                <source>title.controller_code</source>
+                <target>Controller code</target>
+            </trans-unit>
+            <trans-unit id="title.twig_template_code">
+                <source>title.twig_template_code</source>
+                <target>Twig template code</target>
+            </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Veilig inloggen</target>
+            </trans-unit>
+            <trans-unit id="title.events_list">
+                <source>title.events_list</source>
+                <target>Evenementen Lijst</target>
+            </trans-unit>
+            <trans-unit id="title.edit_event">
+                <source>title.edit_event</source>
+                <target>Bewerk evenement #%id%</target>
+            </trans-unit>
+            <trans-unit id="title.add_comment">
+                <source>title.add_comment</source>
+                <target>Voeg een reactie toe</target>
+            </trans-unit>
+            <trans-unit id="title.comment_error">
+                <source>title.comment_error</source>
+                <target>Er is een fout opgetreden bij het opslaan van uw reactie</target>
+            </trans-unit>
+
+            <trans-unit id="action.show">
+                <source>action.show</source>
+                <target>Weergeven</target>
+            </trans-unit>
+            <trans-unit id="action.show_event">
+                <source>action.show_event</source>
+                <target>Evenement weergeven</target>
+            </trans-unit>
+
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Bewerken</target>
+            </trans-unit>
+            <trans-unit id="action.edit_post">
+                <source>action.edit_post</source>
+                <target>Bericht bewerken</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Opslaan</target>
+            </trans-unit>
+            <trans-unit id="action.delete_event">
+                <source>action.delete_event</source>
+                <target>Evenement verwijderen</target>
+            </trans-unit>
+            <trans-unit id="action.create_event">
+                <source>action.create_event</source>
+                <target>Nieuw evenement</target>
+            </trans-unit>
+            <trans-unit id="label.create_event">
+                <source>label.create_event</source>
+                <target>Evenement maken</target>
+            </trans-unit>
+            <trans-unit id="label.customer_id">
+                <source>label.customer_id</source>
+                <target>Klante id</target>
+            </trans-unit>
+            <trans-unit id="label.address_id">
+                <source>label.address_id</source>
+                <target>Address id</target>
+            </trans-unit>
+            <trans-unit id="label.type">
+                <source>label.type</source>
+                <target>Type</target>
+            </trans-unit>
+            <trans-unit id="label.Description">
+                <source>label.Description</source>
+                <target>Omschrijving</target>
+            </trans-unit>
+            <trans-unit id="label.staff_id">
+                <source>label.staff_id</source>
+                <target>Personeel id</target>
+            </trans-unit>
+            <trans-unit id="label.expected_guests">
+                <source>label.expected_guests</source>
+                <target>verwachte aantal Gasten</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Terug naar de evenementen lijst</target>
+            </trans-unit>
+            <trans-unit id="action.publish_comment">
+                <source>action.publish_comment</source>
+                <target>Reactie opslaan</target>
+            </trans-unit>
+            <trans-unit id="action.sign_in">
+                <source>action.sign_in</source>
+                <target>Inloggen</target>
+            </trans-unit>
+            <trans-unit id="action.browse_app">
+                <source>action.browse_app</source>
+                <target>Applicatie bekijken</target>
+            </trans-unit>
+            <trans-unit id="action.browse_admin">
+                <source>action.browse_admin</source>
+                <target>Inloggen</target>
+            </trans-unit>
+            <trans-unit id="label.name">
+                <source>label.name</source>
+                <target>Naam</target>
+            </trans-unit>
+            <trans-unit id="label.begin_date">
+                <source>label.begin_date</source>
+                <target>Start Datum</target>
+            </trans-unit>
+            <trans-unit id="label.end_date">
+                <source>label.end_date</source>
+                <target>Eind Datum</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>Gebruikersnaam</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Wachtwoord</target>
+            </trans-unit>
+            <trans-unit id="label.role">
+                <source>label.role</source>
+                <target>Rol</target>
+            </trans-unit>
+            <trans-unit id="label.actions">
+                <source>label.actions</source>
+                <target>Acties</target>
+            </trans-unit>
+            <trans-unit id="title.event_new">
+                <source>title.event_new</source>
+                <target>Nieuw evenement</target>
+            </trans-unit>
+            <trans-unit id="action.edit_contents">
+                <source>action.edit_contents</source>
+                <target>Inhoud bewerken</target>
+            </trans-unit>
+
+            <trans-unit id="menu.toggle_nav">
+                <source>menu.toggle_nav</source>
+                <target>Schakel navigatie</target>
+            </trans-unit>
+            <trans-unit id="menu.events_list">
+                <source>menu.events_list</source>
+                <target>Evenementen lijst</target>
+            </trans-unit>
+            <trans-unit id="menu.back_to_blog">
+                <source>menu.back_to_blog</source>
+                <target>Terug naar de blog</target>
+            </trans-unit>
+            <trans-unit id="menu.homepage">
+                <source>menu.homepage</source>
+                <target>Homepagina</target>
+            </trans-unit>
+            <trans-unit id="menu.admin">
+                <source>menu.admin</source>
+                <target>Beheerpaneel</target>
+            </trans-unit>
+            <trans-unit id="menu.logout">
+                <source>menu.logout</source>
+                <target>Uitloggen</target>
+            </trans-unit>
+
+            <trans-unit id="post.to_publish_a_comment">
+                <source>post.to_publish_a_comment</source>
+                <target>om een reactie toe te voegen</target>
+            </trans-unit>
+            <trans-unit id="post.num_comments">
+                <source>post.num_comments</source>
+                <target>%count% reactie|%count% reacties</target>
+            </trans-unit>
+            <trans-unit id="post.commented_on">
+                <source>post.commented_on</source>
+                <target>gereageerd op</target>
+            </trans-unit>
+            <trans-unit id="post.no_comments">
+                <source>post.no_comments</source>
+                <target>Wees de eerste om te reageren op dit bericht.</target>
+            </trans-unit>
+
+            <trans-unit id="help.app_description">
+                <source>help.app_description</source>
+                <target><![CDATA[Dit is een <strong>voorbeeld applicatie</strong>, gemaakt met het Symfony framework, die u een indruk geeft van de aanbevolen manier om een Symfony applicatie te ontwikkelen.]]></target>
+            </trans-unit>
+            <trans-unit id="help.show_code">
+                <source>help.show_code</source>
+                <target><![CDATA[Klik op deze knop om de broncode van de <strong>Controller</strong> en <strong>template</strong>, die gebruikt zijn bij het weergeven van deze pagina, te bekijken.]]></target>
+            </trans-unit>
+            <trans-unit id="help.browse_admin">
+                <source>help.browse_admin</source>
+                <target><![CDATA[U moet eerst inloggen om de applicatie te starten.]]></target>
+            </trans-unit>
+            <trans-unit id="help.login_users">
+                <source>help.login_users</source>
+                <target>Probeer de volgende gebruiker</target>
+            </trans-unit>
+            <trans-unit id="help.role_user">
+                <source>help.role_user</source>
+                <target>normale gebruiker</target>
+            </trans-unit>
+            <trans-unit id="help.role_admin">
+                <source>help.role_admin</source>
+                <target>beheerder</target>
+            </trans-unit>
+            <trans-unit id="help.reload_fixtures">
+                <source>help.reload_fixtures</source>
+                <target>Als het niet lukt om in te loggen met deze gebruikers, probeer dan de applicatie instellingen te herladen door dit commando in de terminal uit te voeren:</target>
+            </trans-unit>
+            <trans-unit id="help.add_user">
+                <source>help.add_user</source>
+                <target>Als u een nieuwe gebruiker wilt toevoegen dan voer dit commando uit:</target>
+            </trans-unit>
+            <trans-unit id="help.more_information">
+                <source>help.more_information</source>
+                <target><![CDATA[Voor meer informatie bekijk de <a href="https://symfony.com/doc">Symfony documentatie</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>Weet u zeker dat u dit evenement wilt verwijderen?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>Deze actie kan niet ongedaan gemaakt worden.</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Annuleren</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Verwijderen</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
