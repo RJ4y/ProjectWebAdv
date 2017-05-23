@@ -10,12 +10,12 @@ namespace Repositories;
 
 
 
-//include("IEventRepository.php");
+
 use Evenement;
 use SebastianBergmann\Exporter\Exception;
 
 require "Evenement.php";
- class PDOEventRepository //implements IEventRepository
+ class PDOEventRepository implements IEventRepository
 {
     public $connection = null;
 

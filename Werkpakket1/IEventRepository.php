@@ -13,9 +13,8 @@ interface IEventRepository
 {
     public function findEvents();
     public function findEventById($id);
-    /*
-    public function findPersons();
-    public function add(Person $person);
-    public function remove($id);
-    */
+    public function findEventByPerson($id);
+    public function findEventByDate($fromDate , $toDate);
+    public function findEventByDateAndPerson($id , $startDate , $endDate);
+    public function AddEvent(\Evenement $evenement);
 }

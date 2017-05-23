@@ -5,7 +5,7 @@
  * Date: 29/03/2017
  * Time: 09:34
  */
-//require "PDOEventRepository.php";
+
   class ConnectionDb{
 
      public static function getConnection(){
