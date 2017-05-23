@@ -12,6 +12,7 @@ namespace Repositories;
 
 
 use Evenement;
+use SebastianBergmann\Exporter\Exception;
 
 require "Evenement.php";
  class PDOEventRepository implements IEventRepository
@@ -27,6 +28,7 @@ require "Evenement.php";
     public function findEvents()
     {
         try {
+            echo 'in method';
             $statementString = "SELECT * FROM evenementen";
 
             $connection =$this->connection;
@@ -42,7 +44,7 @@ require "Evenement.php";
             }
             return $evenementen;
         } catch (\Exception $exception) {
-            return null;
+            throw $exception;
         }
 
 
@@ -128,24 +130,22 @@ require "Evenement.php";
         try{
             $id = $evenement->getId();
             $titel = $evenement->getTitel();
-            $klant_id = $evenement->getKlant();
+            $klant_id = $evenement->getKlantId();
             $adres_id = 1;
             $type = $evenement->getType();
             $planningDatum = $evenement->getDatumIngave();
-            $omschrijving = $evenement->getOmschrijvingEvenement();
+            $omschrijving = $evenement->getOmschrijving();
             $personeel_id = $evenement->getToegewezenPersoneel();
             $startDatum = $evenement->startDatum;
             $eindDatum = $evenement->eindDatum;
             $gasten = $evenement->getVerwachteAanwezigheid();
 
-
-
             $statementString="INSERT INTO evenementen VALUES ($id,'$titel',$klant_id,$adres_id,'$type ','$planningDatum','$omschrijving',$personeel_id,'$startDatum','$eindDatum',$gasten)";
             $result = $this->connection->query($statementString);
             if ($result === TRUE) {
-                echo "Evenement toegevoegd";
+                return $evenement;
             } else {
-                echo "Niet toegevoegd";
+                return null;
             }
         } catch (\Exception $exception){
             return $exception;

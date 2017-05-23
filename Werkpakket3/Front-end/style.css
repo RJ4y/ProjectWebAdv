@@ -1,0 +1,172 @@
+
+
+#result{
+    color: #FFE658;
+}
+tr, td{
+    border: solid black 1px;
+}
+@media screen and (max-width: 750px){
+    h1{
+        display: inline-block;
+        width: 50%;
+        margin-left: 25%;
+        text-align: center;
+        color:  #FFE658
+    }
+    body {
+        background: #404040;
+    }
+    #form {
+        display: block;
+        text-align: center;
+        height: 100vh;
+        overflow: visible;
+    }
+    label{
+        color:  #FFE658;
+        font-family: Calibri, serif;
+        font-size: medium;
+        font-style: italic;
+
+    }
+
+    form {
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        height: 100%;
+    }
+
+    input[type = "text"], input[type = "number"], input[type="date"], input[type="datetime"], textarea {
+        width: 200px;
+        display: block;
+        border-radius: 20px;
+        height: 25px;
+        padding-left: 10px;
+        margin: 2%;
+        margin-left: 0;
+
+    }
+
+    textarea {
+        resize: vertical;
+        height: 200px;
+        padding: 10px;
+    }
+
+    select {
+        display: block;
+        width: 215px;
+        border-radius: 20px;
+        height: 30px;
+        padding-left: 10px;
+        margin: 2%;
+        margin-left: 0;
+    }
+
+    input[type = submit] {
+        width: 215px;
+        display: block;
+        border-radius: 20px;
+        height: 25px;
+        padding-left: 10px;
+        border-color: #FFE658;
+        background: #B71427;
+        border-width: 1px;
+        margin-top: 8%;
+        margin-left: 0;
+        margin-bottom: 5%;
+        font-family: Calibri, serif;
+        font-size: medium;
+        font-style: italic;    }
+
+}
+@media screen and (min-width: 750px){
+    h1{
+        display: inline-block;
+        width: 50%;
+        margin-left: 25%;
+        text-align: center;
+        color:  #FFE658;
+    }
+    body {
+
+        background: #B71427;;
+    }
+    label{
+        display: inline-block;
+        width: 50%;
+        margin-top: 3%;
+        margin-left: 1%;
+        font-family: Calibri, serif;
+        font-size: large;
+        font-style: italic;
+        color:  #FFE658;;
+    }
+    input, select{
+        display: inline-block;
+        width: 40%;
+        margin-top: 25px;
+        border-radius: 20px;
+        height: 25px;
+        padding-left: 10px;
+    }
+    select{
+        display: inline-block;
+        width: 42%;
+        margin-top: 25px;
+        border-radius: 20px;
+        height: 25px;
+        padding-left: 10px;
+    }
+    textarea{
+
+        width: 90%;
+        margin-top: 3%;
+        border-radius: 20px;
+        height: 30vh;
+        padding-left: 10px;
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-top: 3vh;
+        resize: vertical;
+
+    }
+    input[type=submit]{
+        width: 50%;
+        display: block;
+        border-radius: 20px;
+        height: 25px;
+        padding-left: 10px;
+        background:#B71427;
+
+        margin-top: 8%;
+        margin-left: 25%;
+        margin-bottom: 5%;
+        font-family: Calibri, serif;
+        font-size: medium;
+        font-style: italic;
+        border-color: #FFE658;
+    }
+
+    form{
+       height: 100%;
+
+    }
+
+    #form {
+        margin-top: -20px;
+        margin-bottom: -25px;
+        display: block;
+        text-align: left;
+        width: 50%;
+        margin-left: 25%;
+        height: 100%;
+        overflow: inherit;
+        background: #404040;
+    }
+
+
+}
