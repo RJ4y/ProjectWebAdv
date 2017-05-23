@@ -10,11 +10,11 @@ namespace Repositories;
 
 
 
-//include("IEventRepository.php");
+
 use Evenement;
 
 require "Evenement.php";
- class PDOEventRepository //implements IEventRepository
+ class PDOEventRepository implements IEventRepository
 {
     public $connection = null;
 

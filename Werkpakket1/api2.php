@@ -1,6 +1,7 @@
 <?php
 use Repositories\PDOEventRepository;
-
+require "JsonView.php";
+require "EvenementController.php";
 require "vendor/autoload.php";
 include 'ConnectionDb.php';
 include 'PDOEventRepository.php';
@@ -15,84 +16,44 @@ try {
         function() {
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
+            $view = new JsonView();
+            $controller = new EvenementController($repo , $view);
             if (isset($_GET["from"])& isset($_GET["until"])){
-                $event = $repo->findEventByDate($_GET["from"] , $_GET["until"]);
+                $controller->getAllEventByDate($_GET["from"] , $_GET["until"]);
             }else{
-                $event= $repo->findEvents();
-            }
-            if ($event != null) { // eventid gevonden
-                http_response_code(200);
-                header('Content-Type: application/json');
-                echo json_encode($event);
-            } else {
-                http_response_code(404); // eventid bestaat niet
+                $controller->getAllEvents();
             }
         }
    );
-    $router->map('GET','/events/',
-        function() {
-            $connection = ConnectionDb::getConnection();
-            $repo = new PDOEventRepository($connection);
-            if (isset($_GET["from"])& isset($_GET["until"])){
-                $event = $repo->findEventByDate($_GET["from"] , $_GET["until"]);
-                if ($event != null) { // eventid gevonden
-                    http_response_code(200);
-                    header('Content-Type: application/json');
-                    echo json_encode($event);
-                } else {
-                    http_response_code(404); // eventid bestaat niet
-                }
-            }else{
-                echo "Parameters zijn niet meegegeven";
-
-            }
-
-        }
-    );
     $router->map('GET','/events/[i:id]',
         function($id) {
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
-            $event= $repo->findEventById($id);
-            if ($event != null) { // eventid gevonden
-                http_response_code(200);
-                header('Content-Type: application/json');
-                echo json_encode($event);
-            } else {
-                http_response_code(404); // eventid bestaat niet
-            }
+            $view = new JsonView();
+            $controller = new EvenementController($repo , $view);
+            $controller->getAllEventById($id);
         }
     );
     $router->map('GET','/events/person/[i:id]',
         function($id) {
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
-            $event= $repo->findEventByPerson($id);
-            if ($event != null) { // eventid gevonden
-                http_response_code(200);
-                header('Content-Type: application/json');
-                echo json_encode($event);
-            } else {
-                http_response_code(404); // eventid bestaat niet
-            }
+            $view = new JsonView();
+            $controller = new EvenementController($repo , $view);
+            $controller->getAllEventByPerson($id);
         }
     );
     $router->map('GET','/person/[i:id]/events',
         function($id) {
 
-             $connection = ConnectionDb::getConnection();
-             $repo = new Repositories\PDOEventRepository($connection);
-            if (isset($_GET["from"]) & isset($_GET["until"])){
+        if (isset($_GET["from"]) & isset($_GET["until"])){
                 $fromDate = $_GET["from"];
                 $toDate = $_GET["until"];
-                $event = $repo->findEventByDateAndPerson($id , $fromDate , $toDate);
-                if ($event != null) { // eventid gevonden
-                    http_response_code(200);
-                    header('Content-Type: application/json');
-                    echo json_encode($event);
-                } else {
-                    http_response_code(404); // eventid bestaat niet
-                }
+            $connection = ConnectionDb::getConnection();
+            $repo = new PDOEventRepository($connection);
+            $view = new JsonView();
+            $controller = new EvenementController($repo , $view);
+            $controller->getAllEventByDateAndPerson($id , $fromDate ,$toDate);
             }else{
                 echo "Parameters zijn niet meegegeven";
             }
@@ -100,11 +61,8 @@ try {
 
         }
     );
-
-    $router->map('POST' , '/events',function(){
-       $connection = ConnectionDb::getConnection();
-        $repo = new Repositories\PDOEventRepository($connection);
-
+    $router->map('POST' , '/events'
+        ,function(){
         $evenement = new Evenement();
         $evenement->titel = $_POST['titel'];
         $evenement->id = $_POST['id'];
@@ -116,7 +74,11 @@ try {
         $evenement->toegewezenPersoneel =  $_POST['toegewezenPersoneel'];
         $evenement->startDatum =  $_POST['startDatum'];
         $evenement->eindDatum =  $_POST['eindDatum'];
-        $repo->AddEvent($evenement);
+            $connection = ConnectionDb::getConnection();
+            $repo = new PDOEventRepository($connection);
+            $view = new JsonView();
+            $controller = new EvenementController($repo , $view);
+            $controller->AddEvent($evenement);
 
 
 
