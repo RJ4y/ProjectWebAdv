@@ -118,7 +118,25 @@
             $this->toegewezenPersoneel = $toegewezenPersoneel;
         }
 
+        public function getStartDatum()
+        {
+            return $this->startDatum;
+        }
 
+        public function setStartDatum($startDatum)
+        {
+            $this->startDatum = $startDatum;
+        }
+
+        public function getEindDatum()
+        {
+            return $this->eindDatum;
+        }
+
+        public function setEindDatum($eindDatum)
+        {
+            $this->eindDatum = $eindDatum;
+        }
 
         function __toString()
         {
