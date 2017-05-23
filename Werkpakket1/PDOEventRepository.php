@@ -14,17 +14,15 @@ namespace Repositories;
 use Evenement;
 
 require "Evenement.php";
- class PDOEventRepository implements IEventRepository
-{
-    public $connection = null;
+ {
+     public $connection = null;
 
-    public function __construct(\mysqli $connection)
-    {
-        $this->connection = $connection;
-    }
+     public function __construct(\mysqli $connection)
+     {
+       $this->connection = $connection;
+     }
 
-
-    public function findEvents()
+     public function findEvents()
     {
         try {
             $statementString = "SELECT * FROM evenementen";

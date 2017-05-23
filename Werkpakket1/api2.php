@@ -1,4 +1,5 @@
 <?php
+
 use Repositories\PDOEventRepository;
 require "JsonView.php";
 require "EvenementController.php";
@@ -6,14 +7,12 @@ require "vendor/autoload.php";
 include 'ConnectionDb.php';
 include 'PDOEventRepository.php';
 try {
-
     $router = new AltoRouter();
-
-
-    $router->setBasePath('/~user/Werkpakket1/api');
+    $router->setBasePath('/~user/werkpakket1/api');
 
     $router->map('GET','/events',
         function() {
+
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
             $view = new JsonView();
@@ -46,14 +45,14 @@ try {
     $router->map('GET','/person/[i:id]/events',
         function($id) {
 
-        if (isset($_GET["from"]) & isset($_GET["until"])){
+            if (isset($_GET["from"]) & isset($_GET["until"])){
                 $fromDate = $_GET["from"];
                 $toDate = $_GET["until"];
-            $connection = ConnectionDb::getConnection();
-            $repo = new PDOEventRepository($connection);
-            $view = new JsonView();
-            $controller = new EvenementController($repo , $view);
-            $controller->getAllEventByDateAndPerson($id , $fromDate ,$toDate);
+                $connection = ConnectionDb::getConnection();
+                $repo = new PDOEventRepository($connection);
+                $view = new JsonView();
+                $controller = new EvenementController($repo , $view);
+                $controller->getAllEventByDateAndPerson($id , $fromDate ,$toDate);
             }else{
                 echo "Parameters zijn niet meegegeven";
             }
@@ -63,17 +62,17 @@ try {
     );
     $router->map('POST' , '/events'
         ,function(){
-        $evenement = new Evenement();
-        $evenement->titel = $_POST['titel'];
-        $evenement->id = $_POST['id'];
-        $evenement->datumIngave = $_POST['datumIngave'];
-        $evenement->klant = $_POST['klant'];
-        $evenement->omschrijvingEvenement =  $_POST['omschrijvingEvenement'];
-        $evenement->verwachteAanwezigheid =  $_POST['verwachteAanwezigheid'];
-        $evenement->type =  $_POST['type'];
-        $evenement->toegewezenPersoneel =  $_POST['toegewezenPersoneel'];
-        $evenement->startDatum =  $_POST['startDatum'];
-        $evenement->eindDatum =  $_POST['eindDatum'];
+            $evenement = new Evenement();
+            $evenement->titel = $_POST['titel'];
+            $evenement->id = $_POST['id'];
+            $evenement->datumIngave = $_POST['datumIngave'];
+            $evenement->klant = $_POST['klant'];
+            $evenement->omschrijvingEvenement =  $_POST['omschrijvingEvenement'];
+            $evenement->verwachteAanwezigheid =  $_POST['verwachteAanwezigheid'];
+            $evenement->type =  $_POST['type'];
+            $evenement->toegewezenPersoneel =  $_POST['toegewezenPersoneel'];
+            $evenement->startDatum =  $_POST['startDatum'];
+            $evenement->eindDatum =  $_POST['eindDatum'];
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
             $view = new JsonView();
@@ -84,12 +83,14 @@ try {
 
 
 
-    });
-
+        });
     $match = $router->match();
     if( $match && is_callable( $match['target'] ) ){
         call_user_func_array( $match['target'], $match['params'] );
+    }else{
+      http_response_code(404);
     }
-} catch (Exception $e) {
-    var_dump($e);
+
+}catch (Exception $e){
+    echo $e;
 }

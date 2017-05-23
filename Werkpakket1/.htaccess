@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /~user/Werkpakket1/api
+RewriteBase /~user/werkpakket1/api
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /~user/werkpakket1/api2.php?/$1 [L]
