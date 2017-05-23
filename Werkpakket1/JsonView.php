@@ -6,7 +6,7 @@ class JsonView{
     }
 
     public function show($evenement){
-        header('Content-Type: application/json');
+
        if (isset($evenement)){
             http_response_code(200);
            echo json_encode($evenement);
