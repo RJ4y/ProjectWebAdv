@@ -9,11 +9,13 @@ try {
 
     $router = new AltoRouter();
 
+    //$router->setBasePath('/~user/Werkpakket1/api');
 
     $router->setBasePath('/~user/Werkpakket1/api');
 
     $router->map('GET','/events',
         function() {
+            echo 'Test';
             $connection = ConnectionDb::getConnection();
             $repo = new PDOEventRepository($connection);
             $view = new JsonView();
@@ -79,11 +81,6 @@ try {
             $view = new JsonView();
             $controller = new EvenementController($repo , $view);
             $controller->AddEvent($evenement);
-
-
-
-
-
     });
 
     $match = $router->match();

@@ -9,11 +9,12 @@
   class ConnectionDb{
 
      public static function getConnection(){
-         $host = "localhost";
-         $user = "root";
-         $password = "user";
-         $database = "monkeybussines";
-         $pdo=null;
+         $config = simplexml_load_file("config.xml");
+         $host = trim((String)$config->host);
+         $user = trim((String)$config->dbUser);
+         $password = trim((String)$config->dbPw);
+         $database = trim((String)$config->dbName);
+         $pdo = null;
          try {
              $connection = new mysqli($host, $user, $password, $database);
              return $connection;
