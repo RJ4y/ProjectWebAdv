@@ -146,9 +146,12 @@ class Evenement   {
             $this->eindDatum = $eindDatum;
         }
 
-        function __toString()
-        {
-            return $this->titel  . $this->datumIngave . $this->klantId . $this->omschrijving .
-                   $this->verwachteAanwezigheid . $this->type  . $this->toegewezenPersoneel;
-        }
+    function __toString()
+    {
+        return "Id: ".$this->id." Titel: ".$this->titel." Datum ingave: ".$this->datumIngave." Klant id: ".$this->klantId.
+        " Omschrijving: ".$this->omschrijving." Start datum: ".$this->startDatum." Eind datum: ".$this->eindDatum." Verwachte aanwezigheid: ".$this->verwachteAanwezigheid.
+        " Type: ".$this->type." Toegewezen personeel: ".$this->toegewezenPersoneel;
     }
+
+
+}

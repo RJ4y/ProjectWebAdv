@@ -10,7 +10,7 @@
 <body>
 <h1>Evenement toevoegen</h1>
 <div id="form">
-<form onsubmit="sendPostRequest()">
+<form>
     <label for="id">Event id</label>
     <input type="number" id="id">
     <label for="naam">Naam</label>
@@ -51,7 +51,7 @@
     <input type="date" id="start_datum">
     <label for="eind_datum">Einde evenment</label>
     <input type="date" id="eind_datum">
-    <input type="submit" value="Voeg toe">
+    <input type="button" value="Voeg toe" onclick="sendPostRequest()">
 </form>
     <script>
         function sendPostRequest() {
@@ -60,14 +60,14 @@
                 "titel":document.getElementById('naam').value,
                 "datumIngave":document.getElementById('planning_datum').value,
                 "klantId":1,
+                "omschrijving":document.getElementById('omschrijving').value,
                 "startDatum":document.getElementById('start_datum').value,
                 "eindDatum":document.getElementById('eind_datum').value,
                 "verwachteAanwezigheid":document.getElementById('verwachteAanwezigheid').value,
                 "type":document.getElementById('type').value,
-                "toegewezenPersoneel":1,
+                "toegewezenPersoneel":1
             };
-            addEvent('http://192.168.226.128/~user/WebAdvancedProject/api.php/events/', event);
-            return false;
+            addEvent('http://192.168.226.128/~user/WebAdvancedProject/api.php/events', event);
         }
 
     </script>

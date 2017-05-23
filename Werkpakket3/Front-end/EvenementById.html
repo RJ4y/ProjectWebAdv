@@ -7,10 +7,17 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<label>Event id</label>
+<input type="number" id="eventId">
+<button type="button" onclick="getEvent()">Get event</button>
 <div id="resultDiv">
 </div>
 <script>
-    getEventById('http://192.168.226.128/~user/WebAdvancedProject/Werkpakket1/api.php/events/', document.getElementById('resultDiv'), 1);
+    function getEvent(){
+        var eventId = document.getElementById('eventId').value;
+        getEventById('http://192.168.226.128/~user/WebAdvancedProject/api.php/events/', document.getElementById('resultDiv'), eventId);
+    }
+
 </script>
 </body>
 </html>

@@ -8,7 +8,6 @@ function getEventById(url, div, eventId) {
     }).then(function (response) {
         return response.json();
     }).then(function (json) {
-        console.log(json);
         var tableStr = returnEventsInTable(json);
         div.insertAdjacentHTML('beforeend', tableStr);
     }).catch(function (error) {
@@ -16,20 +15,19 @@ function getEventById(url, div, eventId) {
     });
 }
 
-function addEvent(url, event){
+function addEvent(url, event) {
     fetch(url, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(event)
-    }).then(function(response){
-       if(response.status == 201){
-           alert("Event created !");
-           //window.location.href = 'EvenementById.html';
-       }else{
-           alert("Something went wrong !\n" + response.status);
-       }
+    }).then(function (response) {
+        if (response.status == 201) {
+            alert("Event created !");
+        } else {
+            alert("Something went wrong !\n" + response.status);
+        }
     }).catch(function (error) {
         alert("Error: " + error);
     });
@@ -40,30 +38,27 @@ function returnEventsInTable(event) {
         "<tr>" +
         "<th>Event id</th>" +
         "<th>Titel</th>" +
+        "<th>Datum ingave</th>" +
         "<th>Klant id</th>" +
-        "<th>Adres id</th>" +
-        "<th>Type</th>" +
-        "<th>Planning datum</th>" +
-        "<th>Omschijving</th>" +
-        "<th>Personeel id</th>" +
         "<th>Start datum</th>" +
         "<th>Eind datum</th>" +
-        "<th>Verwachte aanwezigheid</th>"
-        "</tr>";
-
-        $resultStr += "<tr>";
-        $resultStr += "<td>" + event.eventId + "</td>" +
-            "<td>" + event.naam + "</td>" +
-            "<td>" + event.klantId + "</td>" +
-            "<td>" + event.adresId + "</td>" +
-            "<td>" + event.type + "</td>" +
-            "<td>" + event.planningDatum + "</td>" +
-            "<td>" + event.omschrijving + "</td>" +
-            "<td>" + event.personeelId + "</td>" +
-            "<td>" + event.startDatum + "</td>" +
-            "<td>" + event.eindDatum + "</td>"+
-            "<td>" + event.verwachteAanwezigheid + "</td>";
-        $resultStr += "</tr>";
+        "<th>Omschrijving</th>" +
+        "<th>Verwachte aanwezigheid</th>" +
+        "<th>Type</th>" +
+        "<th>Toegewezen personeel id</th>"
+    "</tr>";
+    $resultStr += "<tr>";
+    $resultStr += "<td>" + event[0].id + "</td>" +
+        "<td>" + event[0].titel + "</td>" +
+        "<td>" + event[0].datumIngave + "</td>" +
+        "<td>" + event[0].klantId + "</td>" +
+        "<td>" + event[0].startDatum + "</td>" +
+        "<td>" + event[0].eindDatum + "</td>" +
+        "<td>" + event[0].omschrijving + "</td>" +
+        "<td>" + event[0].verwachteAanwezigheid + "</td>" +
+        "<td>" + event[0].type + "</td>" +
+        "<td>" + event[0].toegewezenPersoneel + "</td>";
+    $resultStr += "</tr>";
     $resultStr += "</table>";
     return $resultStr;
 }

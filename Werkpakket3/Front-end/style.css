@@ -66,7 +66,7 @@ tr, td{
         margin-left: 0;
     }
 
-    input[type = submit] {
+    input[type = button] {
         width: 215px;
         display: block;
         border-radius: 20px;
@@ -134,7 +134,7 @@ tr, td{
         resize: vertical;
 
     }
-    input[type=submit]{
+    input[type=button]{
         width: 50%;
         display: block;
         border-radius: 20px;
