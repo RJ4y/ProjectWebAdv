@@ -1,10 +1,5 @@
 <?php
-
-/**
- * @property  omschrijvingEvenement
-     */
-class Evenement
-    {
+class Evenement   {
 
         public $id;
         public $titel;

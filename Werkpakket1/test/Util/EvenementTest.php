@@ -6,6 +6,7 @@
  * Date: 23/05/2017
  * Time: 15:39
  */
+require_once 'C:\\Users\\11500046\\Documents\\GitHub\\ProjectWebAdv\\Werkpakket1\\Evenement.php';
 class EvenementTest extends PHPUnit_Framework_TestCase
 {
     protected $evenement;
@@ -34,14 +35,14 @@ class EvenementTest extends PHPUnit_Framework_TestCase
 
     public function testCanGetKlant()
     {
-        $this->evenement->setKlant("klant");
-        $this->assertTrue("klant" === $this->evenement->getKlant());
+        $this->evenement->setKlantId(1);
+        $this->assertTrue(1 === $this->evenement->getKlantId());
     }
 
     public function testCanGetOmschrijvingEvenement()
     {
-        $this->evenement->setOmschrijvingEvenement("omschrijving");
-        $this->assertTrue("omschrijving" === $this->evenement->getOmschrijvingEvenement());
+        $this->evenement->setOmschrijving("omschrijving");
+        $this->assertTrue("omschrijving" === $this->evenement->getOmschrijving());
     }
 
     public function testCanGetVerwachteAanwezigheid()

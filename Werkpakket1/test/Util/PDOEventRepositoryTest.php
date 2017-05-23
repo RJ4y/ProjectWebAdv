@@ -7,7 +7,8 @@
  */
 
 use Repositories\PDOEventRepository;
-
+require_once "C:\\Users\\11500046\\Documents\\GitHub\\ProjectWebAdv\\Werkpakket1\\PDOEventRepository.php";
+require_once "C:\\Users\\11500046\\Documents\\GitHub\\ProjectWebAdv\\Werkpakket1\\ConnectionDb.php";
 class PDOEventRepositoryTest extends PHPUnit_Framework_TestCase
 {
     private $mock;
@@ -33,8 +34,8 @@ class PDOEventRepositoryTest extends PHPUnit_Framework_TestCase
                         'datumIngave'=> $this->event->getDatumIngave(),
                         'eindDatum'=> $this->event->getEindDatum(),
                         '$startDatum'=> $this->event->getStartDatum(),
-                        'klant'=> $this->event->getKlant(),
-                        'omschrijvingEvenement'=> $this->event->getOmschrijvingEvenement(),
+                        'klant'=> $this->event->getKlantId(),
+                        'omschrijvingEvenement'=> $this->event->getOmschrijving(),
                         'verwachteAanwezigheid'=> $this->event->getVerwachteAanwezigheid(),
                         'type'=> $this->event->getType(),
                         'toegewezenPersoneel'=> $this->event->getToegewezenPersoneel()

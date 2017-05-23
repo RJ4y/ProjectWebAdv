@@ -6,6 +6,8 @@
  * Date: 23/05/2017
  * Time: 14:48
  */
+require "C:\\Users\\11500046\\Documents\\GitHub\\ProjectWebAdv\\Werkpakket1\\JsonView.php";
+require "C:\\Users\\11500046\\Documents\\GitHub\\ProjectWebAdv\\Werkpakket1\\Evenement.php";
 class JsonViewTest extends PHPUnit_Framework_TestCase
 {
     public function testShow_responseCode_404IfFailed() {
